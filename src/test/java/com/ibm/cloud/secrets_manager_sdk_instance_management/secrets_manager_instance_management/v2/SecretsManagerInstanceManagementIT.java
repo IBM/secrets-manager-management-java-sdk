@@ -45,6 +45,7 @@ import static org.testng.Assert.*;
 public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   public SecretsManagerInstanceManagement service = null;
   public static Map<String, String> config = null;
+  private String instanceId = null;
   final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
   final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
   /**
@@ -72,6 +73,10 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
     assertFalse(config.isEmpty());
     assertEquals(service.getServiceUrl(), config.get("URL"));
 
+    instanceId = config.get("INSTANCE_ID");
+    assertNotNull(instanceId);
+    assertFalse(instanceId.isEmpty());
+
     service.enableRetries(4, 30);
 
     System.out.println("Setup complete.");
@@ -81,7 +86,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   public void testCreateVaultAdmintoken() throws Exception {
     try {
       CreateVaultAdmintokenOptions createVaultAdmintokenOptions = new CreateVaultAdmintokenOptions.Builder()
-        .instanceId("60b40daa-1fd3-4f35-a994-2409cc0f270c")
+        .instanceId(instanceId)
         .build();
 
       // Invoke operation
@@ -103,7 +108,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   public void testGetInstance() throws Exception {
     try {
       GetInstanceOptions getInstanceOptions = new GetInstanceOptions.Builder()
-        .instanceId("60b40daa-1fd3-4f35-a994-2409cc0f270c")
+        .instanceId(instanceId)
         .build();
 
       // Invoke operation
@@ -125,7 +130,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   public void testDeleteInstanceAdmintokens() throws Exception {
     try {
       DeleteInstanceAdmintokensOptions deleteInstanceAdmintokensOptions = new DeleteInstanceAdmintokensOptions.Builder()
-        .instanceId("60b40daa-1fd3-4f35-a994-2409cc0f270c")
+        .instanceId(instanceId)
         .build();
 
       // Invoke operation
