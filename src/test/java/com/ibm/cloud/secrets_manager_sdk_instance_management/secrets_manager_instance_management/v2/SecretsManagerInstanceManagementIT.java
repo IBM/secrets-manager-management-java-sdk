@@ -73,7 +73,10 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
     assertFalse(config.isEmpty());
     assertEquals(service.getServiceUrl(), config.get("URL"));
 
-    instanceId = config.get("INSTANCE_ID");
+    instanceId = System.getenv("SECRETS_MANAGER_INSTANCE_MANAGEMENT_INSTANCE_ID");
+    if (instanceId == null || instanceId.isEmpty()) {
+      instanceId = config.get("INSTANCE_ID");
+    }
     assertNotNull(instanceId);
     assertFalse(instanceId.isEmpty());
 
