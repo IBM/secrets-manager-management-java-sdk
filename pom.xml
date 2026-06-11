@@ -41,6 +41,22 @@
         </dependency>
 
         <dependency>
+            <groupId>com.ibm.cloud</groupId>
+            <artifactId>sdk-core</artifactId>
+            <version>${java.sdk.core.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.squareup.okhttp3</groupId>
+                    <artifactId>okhttp</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.squareup.okio</groupId>
+                    <artifactId>okio</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
