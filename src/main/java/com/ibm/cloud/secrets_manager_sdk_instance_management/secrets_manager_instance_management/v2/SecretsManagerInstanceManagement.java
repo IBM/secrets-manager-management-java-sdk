@@ -24,7 +24,6 @@ import com.ibm.cloud.sdk.core.security.Authenticator;
 import com.ibm.cloud.sdk.core.security.ConfigBasedAuthenticatorFactory;
 import com.ibm.cloud.sdk.core.service.BaseService;
 import com.ibm.cloud.sdk.core.util.ResponseConverterUtils;
-import com.ibm.cloud.sdk.core.util.SdkCommon;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceOptions;
@@ -138,10 +137,6 @@ public class SecretsManagerInstanceManagement extends BaseService {
     Map<String, String> pathParamsMap = new HashMap<String, String>();
     pathParamsMap.put("instance_id", createVaultAdmintokenOptions.instanceId());
     RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/instances/{instance_id}/admintokens", pathParamsMap));
-    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager_instance_management", "v2", "createVaultAdmintoken");
-    for (Entry<String, String> header : sdkHeaders.entrySet()) {
-      builder.header(header.getKey(), header.getValue());
-    }
     builder.header("Accept", "application/json");
     ResponseConverter<Token> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Token>() { }.getType());
@@ -162,10 +157,6 @@ public class SecretsManagerInstanceManagement extends BaseService {
     Map<String, String> pathParamsMap = new HashMap<String, String>();
     pathParamsMap.put("instance_id", deleteInstanceAdmintokensOptions.instanceId());
     RequestBuilder builder = RequestBuilder.delete(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/instances/{instance_id}/admintokens", pathParamsMap));
-    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager_instance_management", "v2", "deleteInstanceAdmintokens");
-    for (Entry<String, String> header : sdkHeaders.entrySet()) {
-      builder.header(header.getKey(), header.getValue());
-    }
     ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
     return createServiceCall(builder.build(), responseConverter);
   }
@@ -184,10 +175,6 @@ public class SecretsManagerInstanceManagement extends BaseService {
     Map<String, String> pathParamsMap = new HashMap<String, String>();
     pathParamsMap.put("instance_id", getInstanceOptions.instanceId());
     RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/instances/{instance_id}", pathParamsMap));
-    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager_instance_management", "v2", "getInstance");
-    for (Entry<String, String> header : sdkHeaders.entrySet()) {
-      builder.header(header.getKey(), header.getValue());
-    }
     builder.header("Accept", "application/json");
     ResponseConverter<Instance> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Instance>() { }.getType());
