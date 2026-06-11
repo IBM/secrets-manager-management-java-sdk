@@ -13,72 +13,73 @@
     <url>https://github.com/IBM/secrets-manager-management-java-sdk</url>
 
     <properties>
-        <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <java.sdk.core.version>9.25.0</java.sdk.core.version>
-        <gson.version>2.10.1</gson.version>
-        <okhttp.version>4.12.0</okhttp.version>
-        <testng.version>7.10.2</testng.version>
-        <mockwebserver.version>4.12.0</mockwebserver.version>
-        <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
-        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
-        <maven.failsafe.plugin.version>3.2.5</maven.failsafe.plugin.version>
-        <build.helper.plugin.version>3.5.0</build.helper.plugin.version>
+        <sdk-core-version>9.25.0</sdk-core-version>
+        <gson-version>2.10.1</gson-version>
+        <testng-version>7.12.0</testng-version>
+        <okhttp3-version>4.12.0</okhttp3-version>
+        <surefire-version>3.5.6</surefire-version>
+        <maven-failsafe-plugin-version>3.5.6</maven-failsafe-plugin-version>
+        <maven-compiler-plugin-version>3.15.0</maven-compiler-plugin-version>
+        <build-helper-plugin-version>3.5.0</build-helper-plugin-version>
+        <java-source-version>11</java-source-version>
+        <java-target-version>11</java-target-version>
+        <junit-version>4.13.2</junit-version>
+        <slf4j-version>2.0.18</slf4j-version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.ibm.cloud</groupId>
+            <artifactId>sdk-core</artifactId>
+            <version>${sdk-core-version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>${gson.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ibm.cloud</groupId>
-            <artifactId>sdk-core</artifactId>
-            <version>${java.sdk.core.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>mockwebserver</artifactId>
-            <version>${mockwebserver.version}</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.squareup.okhttp3</groupId>
-                    <artifactId>okhttp</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.squareup.okio</groupId>
-                    <artifactId>okio</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${gson-version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>${okhttp.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.squareup.okio</groupId>
-            <artifactId>okio</artifactId>
-            <version>3.6.0</version>
-            <scope>test</scope>
+            <version>${okhttp3-version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
+            <version>${testng-version}</version>
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <version>${okhttp3-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>${slf4j-version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -86,7 +87,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>${build.helper.plugin.version}</version>
+                <version>${build-helper-plugin-version}</version>
                 <executions>
                     <execution>
                         <id>add-generated-main-sources</id>
@@ -117,15 +118,16 @@
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
+                <version>${maven-compiler-plugin-version}</version>
                 <configuration>
-                    <release>${maven.compiler.release}</release>
+                    <source>${java-source-version}</source>
+                    <target>${java-target-version}</target>
                 </configuration>
             </plugin>
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.plugin.version}</version>
+                <version>${surefire-version}</version>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
@@ -141,7 +143,7 @@
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${maven.failsafe.plugin.version}</version>
+                <version>${maven-failsafe-plugin-version}</version>
                 <configuration>
                     <includes>
                         <include>**/*IT.java</include>
