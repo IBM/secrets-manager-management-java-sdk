@@ -1,0 +1,13 @@
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/SecretsManagerInstanceManagement.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/CreateVaultAdmintokenOptions.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/DeleteInstanceAdmintokensOptions.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/GetInstanceOptions.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/Instance.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/Token.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedCluster.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedEndpointsData.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedInstanceEncryption.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedInstanceEndpoints.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedInstanceMetadata.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedInstancePlan.java
+/artifacts/secrets-manager-management-java-sdk/src/main/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/package-info.java
