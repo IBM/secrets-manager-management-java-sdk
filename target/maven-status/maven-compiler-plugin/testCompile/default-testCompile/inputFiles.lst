@@ -1,0 +1,15 @@
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/SecretsManagerInstanceManagementIT.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/SecretsManagerInstanceManagementTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/CreateVaultAdmintokenOptionsTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/DeleteInstanceAdmintokensOptionsTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/GetInstanceOptionsTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/InstanceTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/TokenTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedClusterTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedEndpointsDataTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedInstanceEncryptionTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedInstanceEndpointsTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedInstanceMetadataTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/model/VaultDedicatedInstancePlanTest.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/secrets_manager_instance_management/v2/utils/TestUtilities.java
+/artifacts/secrets-manager-management-java-sdk/src/test/java/com/ibm/cloud/secrets_manager_sdk_instance_management/test/SdkIntegrationTestBase.java
