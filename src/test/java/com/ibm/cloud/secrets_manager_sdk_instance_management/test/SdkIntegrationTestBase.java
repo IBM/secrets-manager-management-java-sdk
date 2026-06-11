@@ -22,6 +22,14 @@ public abstract class SdkIntegrationTestBase {
    * @return true if config file is missing
    */
   protected boolean skipTests() {
+    String ibmCredentialsFile = System.getProperty("IBM_CREDENTIALS_FILE");
+    if (ibmCredentialsFile != null && !ibmCredentialsFile.isEmpty()) {
+      File credentialsFile = new File(ibmCredentialsFile);
+      if (credentialsFile.exists()) {
+        return false;
+      }
+    }
+
     String configFilename = getConfigFilename();
     if (configFilename == null || configFilename.isEmpty()) {
       throw new SkipException("Integration test config filename was not provided.");
@@ -29,7 +37,9 @@ public abstract class SdkIntegrationTestBase {
 
     File configFile = new File(configFilename);
     if (!configFile.exists()) {
-      throw new SkipException("Skipping integration tests because config file was not found: " + configFilename);
+      throw new SkipException(
+        "Skipping integration tests because neither IBM_CREDENTIALS_FILE nor config file was found. "
+          + "IBM_CREDENTIALS_FILE=" + ibmCredentialsFile + ", config file=" + configFilename);
     }
 
     return false;
