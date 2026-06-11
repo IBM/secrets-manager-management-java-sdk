@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="TestSuite" time="2.525" tests="26" errors="0" skipped="0" failures="0" flakes="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.jnu.encoding" value="ANSI_X3.4-1968"/>
+    <property name="java.class.path" value="/artifacts/secrets-manager-management-java-sdk/target/test-classes:/artifacts/secrets-manager-management-java-sdk/target/classes:/root/.m2/repository/com/ibm/cloud/sdk-core/9.25.0/sdk-core-9.25.0.jar:/root/.m2/repository/com/squareup/okhttp3/okhttp/5.3.2/okhttp-5.3.2.jar:/root/.m2/repository/commons-codec/commons-codec/1.18.0/commons-codec-1.18.0.jar:/root/.m2/repository/commons-io/commons-io/2.19.0/commons-io-2.19.0.jar:/root/.m2/repository/org/apache/commons/commons-lang3/3.18.0/commons-lang3-3.18.0.jar:/root/.m2/repository/io/reactivex/rxjava2/rxjava/2.2.21/rxjava-2.2.21.jar:/root/.m2/repository/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar:/root/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.9.25/kotlin-stdlib-jdk8-1.9.25.jar:/root/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.9.25/kotlin-stdlib-jdk7-1.9.25.jar:/root/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.9.25/kotlin-stdlib-1.9.25.jar:/root/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar:/root/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/root/.m2/repository/org/testng/testng/7.12.0/testng-7.12.0.jar:/root/.m2/repository/org/jcommander/jcommander/1.83/jcommander-1.83.jar:/root/.m2/repository/org/webjars/jquery/3.7.1/jquery-3.7.1.jar:/root/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/root/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/root/.m2/repository/com/squareup/okhttp3/okhttp-jvm/5.3.2/okhttp-jvm-5.3.2.jar:/root/.m2/repository/com/squareup/okhttp3/logging-interceptor/5.3.2/logging-interceptor-5.3.2.jar:/root/.m2/repository/com/squareup/okhttp3/okhttp-urlconnection/5.3.2/okhttp-urlconnection-5.3.2.jar:/root/.m2/repository/com/squareup/okhttp3/okhttp-java-net-cookiejar/5.3.2/okhttp-java-net-cookiejar-5.3.2.jar:/root/.m2/repository/com/squareup/okio/okio/3.16.4/okio-3.16.4.jar:/root/.m2/repository/com/squareup/okio/okio-jvm/3.16.4/okio-jvm-3.16.4.jar:/root/.m2/repository/com/squareup/okhttp3/mockwebserver/5.3.2/mockwebserver-5.3.2.jar:/root/.m2/repository/com/squareup/okhttp3/mockwebserver3/5.3.2/mockwebserver3-5.3.2.jar:/root/.m2/repository/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar:/root/.m2/repository/org/slf4j/slf4j-jdk14/2.0.18/slf4j-jdk14-2.0.18.jar:"/>
+    <property name="java.vm.vendor" value="Debian"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://tracker.debian.org/openjdk-17"/>
+    <property name="user.timezone" value="Etc/UTC"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-17-openjdk-amd64/lib"/>
+    <property name="sun.java.command" value="/artifacts/secrets-manager-management-java-sdk/target/surefire/surefirebooter-20260611091946076_3.jar /artifacts/secrets-manager-management-java-sdk/target/surefire 2026-06-11T09-19-45_414-jvmRun1 surefire-20260611091946076_1tmp surefire_0-20260611091946076_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/artifacts/secrets-manager-management-java-sdk/target/test-classes:/artifacts/secrets-manager-management-java-sdk/target/classes:/root/.m2/repository/com/ibm/cloud/sdk-core/9.25.0/sdk-core-9.25.0.jar:/root/.m2/repository/com/squareup/okhttp3/okhttp/5.3.2/okhttp-5.3.2.jar:/root/.m2/repository/commons-codec/commons-codec/1.18.0/commons-codec-1.18.0.jar:/root/.m2/repository/commons-io/commons-io/2.19.0/commons-io-2.19.0.jar:/root/.m2/repository/org/apache/commons/commons-lang3/3.18.0/commons-lang3-3.18.0.jar:/root/.m2/repository/io/reactivex/rxjava2/rxjava/2.2.21/rxjava-2.2.21.jar:/root/.m2/repository/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar:/root/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.9.25/kotlin-stdlib-jdk8-1.9.25.jar:/root/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.9.25/kotlin-stdlib-jdk7-1.9.25.jar:/root/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.9.25/kotlin-stdlib-1.9.25.jar:/root/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar:/root/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/root/.m2/repository/org/testng/testng/7.12.0/testng-7.12.0.jar:/root/.m2/repository/org/jcommander/jcommander/1.83/jcommander-1.83.jar:/root/.m2/repository/org/webjars/jquery/3.7.1/jquery-3.7.1.jar:/root/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/root/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/root/.m2/repository/com/squareup/okhttp3/okhttp-jvm/5.3.2/okhttp-jvm-5.3.2.jar:/root/.m2/repository/com/squareup/okhttp3/logging-interceptor/5.3.2/logging-interceptor-5.3.2.jar:/root/.m2/repository/com/squareup/okhttp3/okhttp-urlconnection/5.3.2/okhttp-urlconnection-5.3.2.jar:/root/.m2/repository/com/squareup/okhttp3/okhttp-java-net-cookiejar/5.3.2/okhttp-java-net-cookiejar-5.3.2.jar:/root/.m2/repository/com/squareup/okio/okio/3.16.4/okio-3.16.4.jar:/root/.m2/repository/com/squareup/okio/okio-jvm/3.16.4/okio-jvm-3.16.4.jar:/root/.m2/repository/com/squareup/okhttp3/mockwebserver/5.3.2/mockwebserver-5.3.2.jar:/root/.m2/repository/com/squareup/okhttp3/mockwebserver3/5.3.2/mockwebserver3-5.3.2.jar:/root/.m2/repository/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar:/root/.m2/repository/org/slf4j/slf4j-jdk14/2.0.18/slf4j-jdk14-2.0.18.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/root"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-04-21"/>
+    <property name="java.home" value="/usr/lib/jvm/java-17-openjdk-amd64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/artifacts/secrets-manager-management-java-sdk"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="IBM_CREDENTIALS_FILE" value="/artifacts/secrets-manager-management-java-sdk/ibm-credentials.env"/>
+    <property name="TESTSERVICE_AUTH_TYPE" value="noAuth"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="/artifacts/secrets-manager-management-java-sdk/target/surefire/surefirebooter-20260611091946076_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.19+10-1-deb12u2-Debian"/>
+    <property name="user.name" value="root"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="6.18.28"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="ANSI_X3.4-1968"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/root/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugs.debian.org/openjdk-17"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="17.0.19"/>
+    <property name="user.dir" value="/artifacts/secrets-manager-management-java-sdk"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="ANSI_X3.4-1968"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Debian"/>
+    <property name="java.vm.version" value="17.0.19+10-1-deb12u2-Debian"/>
+    <property name="java.specification.maintenance.version" value="1"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="testConstructServiceURLWithInvalidVariable" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.01"/>
+  <testcase name="testConstructServiceURLwithDefaultValues" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.0"/>
+  <testcase name="testConstructorWithNullAuthenticator" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.004"/>
+  <testcase name="testCreateVaultAdmintokenNoOptions" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.006"/>
+  <testcase name="testCreateVaultAdmintokenWOptions" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.327"/>
+  <testcase name="testCreateVaultAdmintokenWRetries" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.06"/>
+  <testcase name="testDeleteInstanceAdmintokensNoOptions" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.0"/>
+  <testcase name="testDeleteInstanceAdmintokensWOptions" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.022"/>
+  <testcase name="testDeleteInstanceAdmintokensWRetries" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.019"/>
+  <testcase name="testGetInstanceNoOptions" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.001"/>
+  <testcase name="testGetInstanceWOptions" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.034"/>
+  <testcase name="testGetInstanceWRetries" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagementTest" time="0.066"/>
+  <testcase name="testInstance" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.InstanceTest" time="0.001"/>
+  <testcase name="testVaultDedicatedEndpointsData" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedEndpointsDataTest" time="0.007"/>
+  <testcase name="testToken" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.TokenTest" time="0.0"/>
+  <testcase name="testGetInstanceOptions" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceOptionsTest" time="0.0"/>
+  <testcase name="testGetInstanceOptionsError" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceOptionsTest" time="0.002"/>
+  <testcase name="testVaultDedicatedInstancePlan" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedInstancePlanTest" time="0.001"/>
+  <testcase name="testVaultDedicatedCluster" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedClusterTest" time="0.001"/>
+  <testcase name="testVaultDedicatedInstanceMetadata" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedInstanceMetadataTest" time="0.001"/>
+  <testcase name="testVaultDedicatedInstanceEncryption" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedInstanceEncryptionTest" time="0.011"/>
+  <testcase name="testVaultDedicatedInstanceEndpoints" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedInstanceEndpointsTest" time="0.004"/>
+  <testcase name="testCreateVaultAdmintokenOptions" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptionsTest" time="0.0"/>
+  <testcase name="testCreateVaultAdmintokenOptionsError" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptionsTest" time="0.0"/>
+  <testcase name="testDeleteInstanceAdmintokensOptions" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptionsTest" time="0.0"/>
+  <testcase name="testDeleteInstanceAdmintokensOptionsError" classname="com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptionsTest" time="0.003"/>
+</testsuite>
