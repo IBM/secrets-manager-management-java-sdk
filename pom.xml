@@ -30,7 +30,7 @@
     <dependencies>
         <dependency>
             <groupId>com.ibm.cloud</groupId>
-            <artifactId>ibm-cloud-sdk-core</artifactId>
+            <artifactId>sdk-core</artifactId>
             <version>${java.sdk.core.version}</version>
         </dependency>
 
