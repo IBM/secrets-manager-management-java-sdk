@@ -78,7 +78,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
       instanceId = config.get("INSTANCE_ID");
     }
     if (instanceId == null || instanceId.isEmpty()) {
-      instanceId = "60b40daa-1fd3-4f35-a994-2409cc0f270c";
+      instanceId = "bfc50c2e-d66d-4f37-9ccf-9713f8325b39";
     }
     assertNotNull(instanceId);
     assertFalse(instanceId.isEmpty());
