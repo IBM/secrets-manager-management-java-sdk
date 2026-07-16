@@ -11,5 +11,9 @@ replace = "<version>{new_version}</version>"
 
 [[tool.bumpversion.files]]
 filename = "README.md"
-search = "{current_version}"
-replace = "{new_version}"
+search = "<version>{current_version}</version>"
+replace = "<version>{new_version}</version>"
+[[tool.bumpversion.files]]
+filename = "README.md"
+search = "secrets-manager-instance-management:{current_version}"
+replace = "secrets-manager-instance-management:{new_version}"
