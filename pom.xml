@@ -24,6 +24,8 @@
         <build-helper-plugin-version>3.5.0</build-helper-plugin-version>
         <java-source-version>11</java-source-version>
         <java-target-version>11</java-target-version>
+        <nexus-staging-plugin-version>1.7.0</nexus-staging-plugin-version>
+        <maven-gpg-plugin-version>3.2.8</maven-gpg-plugin-version>
         <junit-version>4.13.2</junit-version>
         <slf4j-version>2.0.18</slf4j-version>
     </properties>
@@ -221,6 +223,48 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <!-- "central" is used to deploy artifacts on maven central -->
+        <profile>
+            <id>central</id>
+            <repositories></repositories>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.11.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                            <waitUntil>published</waitUntil>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals><goal>sign</goal></goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <gpgArguments>
+                                <gpgArgument>--batch</gpgArgument>
+                                <gpgArgument>--yes</gpgArgument>
+                                <gpgArgument>--no-tty</gpgArgument>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
 
 <!-- Made with Bob -->
