@@ -5,7 +5,7 @@
 
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager-instance-management</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>secrets-manager-instance-management</name>
