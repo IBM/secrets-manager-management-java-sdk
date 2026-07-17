@@ -26,9 +26,37 @@
         <java-target-version>11</java-target-version>
         <nexus-staging-plugin-version>1.7.0</nexus-staging-plugin-version>
         <maven-gpg-plugin-version>3.2.8</maven-gpg-plugin-version>
+        <maven-source-plugin-version>3.4.0</maven-source-plugin-version>
+        <maven-javadoc-plugin-version>3.12.0</maven-javadoc-plugin-version>
         <junit-version>4.13.2</junit-version>
         <slf4j-version>2.0.18</slf4j-version>
     </properties>
+
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>IBM Cloud</name>
+    </organization>
+
+    <scm>
+        <connection>scm:git:https://github.com/IBM/secrets-manager-management-java-sdk</connection>
+        <developerConnection>scm:git:https://github.com/IBM/secrets-manager-management-java-sdk</developerConnection>
+        <url>https://github.com/IBM/secrets-manager-management-java-sdk/tree/main</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>IBM Cloud Secrets Manager Development</name>
+            <email>secrets.automation.dev@il.ibm.com</email>
+            <url>https://cloud.ibm.com/catalog/secrets-manager</url>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
@@ -221,10 +249,34 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals><goal>jar-no-fork</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin-version}</version>
+                <configuration><quiet>true</quiet></configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
     <profiles>
-        <!-- "central" is used to deploy artifacts on maven central -->
         <profile>
             <id>central</id>
             <repositories></repositories>
@@ -244,6 +296,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin-version}</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -265,6 +318,7 @@
             </build>
         </profile>
     </profiles>
+
 </project>
 
 <!-- Made with Bob -->
