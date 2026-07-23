@@ -40,14 +40,14 @@ The IBM Cloud Secrets Manager Management Java SDK allows developers to programma
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager-instance-management</artifactId>
-    <version>1.0.4</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager-instance-management:1.0.4'
+'com.ibm.cloud:secrets-manager-instance-management:2.0.0'
 ```
 
 ## Authentication
