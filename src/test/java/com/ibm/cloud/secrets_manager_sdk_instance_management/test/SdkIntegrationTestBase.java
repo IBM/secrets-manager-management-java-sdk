@@ -22,7 +22,7 @@ public abstract class SdkIntegrationTestBase {
    * @return true if config file is missing
    */
   protected boolean skipTests() {
-    String ibmCredentialsFile = System.getProperty("IBM_CREDENTIALS_FILE");
+    String ibmCredentialsFile = System.getenv("IBM_CREDENTIALS_FILE");
     if (ibmCredentialsFile != null && !ibmCredentialsFile.isEmpty()) {
       File credentialsFile = new File(ibmCredentialsFile);
       if (credentialsFile.exists()) {
