@@ -136,7 +136,7 @@ public class SecretsManagerInstanceManagement extends BaseService {
       "createVaultAdmintokenOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
     pathParamsMap.put("instance_id", createVaultAdmintokenOptions.instanceId());
-    RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/instances/{instance_id}/admintokens", pathParamsMap));
+    RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/v2/instances/{instance_id}/admintokens", pathParamsMap));
     builder.header("Accept", "application/json");
     ResponseConverter<Token> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Token>() { }.getType());
@@ -156,7 +156,7 @@ public class SecretsManagerInstanceManagement extends BaseService {
       "deleteInstanceAdmintokensOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
     pathParamsMap.put("instance_id", deleteInstanceAdmintokensOptions.instanceId());
-    RequestBuilder builder = RequestBuilder.delete(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/instances/{instance_id}/admintokens", pathParamsMap));
+    RequestBuilder builder = RequestBuilder.delete(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/v2/instances/{instance_id}/admintokens", pathParamsMap));
     ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
     return createServiceCall(builder.build(), responseConverter);
   }
@@ -174,7 +174,7 @@ public class SecretsManagerInstanceManagement extends BaseService {
       "getInstanceOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
     pathParamsMap.put("instance_id", getInstanceOptions.instanceId());
-    RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/instances/{instance_id}", pathParamsMap));
+    RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/v2/instances/{instance_id}", pathParamsMap));
     builder.header("Accept", "application/json");
     ResponseConverter<Instance> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Instance>() { }.getType());

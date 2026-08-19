@@ -83,7 +83,7 @@ public class SecretsManagerInstanceManagementTest {
   public void testCreateVaultAdmintokenWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"token\": \"hvs.CAESIIG_PILmULFYOsEyWHxkZ2mF2a8V...example...p3ZnpWbDF1RUNjUkNTZEg\"}";
-    String createVaultAdmintokenPath = "/api/v2/instances/60b40daa-1fd3-4f35-a994-2409cc0f270c/admintokens";
+    String createVaultAdmintokenPath = "/v2/instances/60b40daa-1fd3-4f35-a994-2409cc0f270c/admintokens";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -134,7 +134,7 @@ public class SecretsManagerInstanceManagementTest {
   public void testDeleteInstanceAdmintokensWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "";
-    String deleteInstanceAdmintokensPath = "/api/v2/instances/60b40daa-1fd3-4f35-a994-2409cc0f270c/admintokens";
+    String deleteInstanceAdmintokensPath = "/v2/instances/60b40daa-1fd3-4f35-a994-2409cc0f270c/admintokens";
     server.enqueue(new MockResponse()
       .setResponseCode(204)
       .setBody(mockResponseBody));
@@ -184,7 +184,7 @@ public class SecretsManagerInstanceManagementTest {
   public void testGetInstanceWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"instance\": {\"id\": \"crn:v1:bluemix:public:secrets-manager:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::\", \"plan\": {\"name\": \"standard\"}}, \"vault_cluster\": {\"status\": \"healthy\", \"version\": \"1.21.2+ent.hsm\"}, \"endpoints\": {\"public\": {\"vault_api\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud\", \"vault_ui\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud/ui\"}, \"private\": {\"vault_api\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud\", \"vault_ui\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud/ui\"}}, \"encryption\": {\"mode\": \"service_managed\", \"provider\": \"key_protect\", \"key_crn\": \"crn:v1:bluemix:public:kms:us-south:a/791f5fb10986423e97aa8512f18b7e65:31639268-42e8-4420-9872-590a6ee20506:key:b4af8f76-e6ea-4dc5-89cc-5f1b9bb207cc\"}}";
-    String getInstancePath = "/api/v2/instances/60b40daa-1fd3-4f35-a994-2409cc0f270c";
+    String getInstancePath = "/v2/instances/60b40daa-1fd3-4f35-a994-2409cc0f270c";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
