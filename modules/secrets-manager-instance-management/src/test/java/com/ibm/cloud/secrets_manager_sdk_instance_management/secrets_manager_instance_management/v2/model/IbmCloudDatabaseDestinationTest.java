@@ -1,0 +1,44 @@
+/*
+ * (C) Copyright IBM Corp. 2026.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
+ */
+
+package com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model;
+
+import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.IbmCloudDatabaseDestination;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.utils.TestUtilities;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
+
+/**
+ * Unit test class for the IbmCloudDatabaseDestination model.
+ */
+public class IbmCloudDatabaseDestinationTest {
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+
+  @Test
+  public void testIbmCloudDatabaseDestination() throws Throwable {
+    IbmCloudDatabaseDestination ibmCloudDatabaseDestinationModel = new IbmCloudDatabaseDestination();
+    assertNull(ibmCloudDatabaseDestinationModel.getId());
+    assertNull(ibmCloudDatabaseDestinationModel.getName());
+    assertNull(ibmCloudDatabaseDestinationModel.getType());
+    assertNull(ibmCloudDatabaseDestinationModel.getDescription());
+    assertNull(ibmCloudDatabaseDestinationModel.getState());
+    assertNull(ibmCloudDatabaseDestinationModel.getCreatedAt());
+    assertNull(ibmCloudDatabaseDestinationModel.getUpdatedAt());
+    assertNull(ibmCloudDatabaseDestinationModel.getCrn());
+  }
+}
