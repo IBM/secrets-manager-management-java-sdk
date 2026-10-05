@@ -16,13 +16,16 @@ package com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_in
 import com.ibm.cloud.sdk.core.http.Response;
 import com.ibm.cloud.sdk.core.service.exception.ServiceResponseException;
 import com.ibm.cloud.sdk.core.util.CredentialUtils;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateDestinationRequestIbmCloudDatabaseDestinationPrototype;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationCollection;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationPatch;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceOptions;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.IbmCloudDatabaseDestination;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Instance;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.ListInstanceDestinationsOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Token;
@@ -116,49 +119,66 @@ public class SecretsManagerInstanceManagementExamples {
     }
 
     try {
+      System.out.println("createInstanceDestination() result:");
       // begin-create_instance_destination
-      CreateInstanceDestinationOptions createInstanceDestinationOptions = new CreateInstanceDestinationOptions.Builder()
-        .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      CreateDestinationRequestIbmCloudDatabaseDestinationPrototype createDestinationRequestModel = new CreateDestinationRequestIbmCloudDatabaseDestinationPrototype.Builder()
         .name("my-postgres")
         .type("ibm_cloud_database")
         .description("Production PostgreSQL database")
         .crn("crn:v1:bluemix:public:databases-for-postgresql:us-south:a/e91c8f42b3d74e1a9c2f05d8b67a3e10:3f8b1c7a-9d42-4e6f-b8a5-2c1d9e7f4b83::")
         .build();
+      CreateInstanceDestinationOptions createInstanceDestinationOptions = new CreateInstanceDestinationOptions.Builder()
+        .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+        .destinationPrototype(createDestinationRequestModel)
+        .build();
 
-      Response<Void> response = secretsManagerInstanceManagementService.createInstanceDestination(createInstanceDestinationOptions).execute();
+      Response<IbmCloudDatabaseDestination> response = secretsManagerInstanceManagementService.createInstanceDestination(createInstanceDestinationOptions).execute();
+      IbmCloudDatabaseDestination ibmCloudDatabaseDestination = response.getResult();
+
+      System.out.println(ibmCloudDatabaseDestination);
       // end-create_instance_destination
-      System.out.printf("createInstanceDestination() response status code: %d%n", response.getStatusCode());
     } catch (ServiceResponseException e) {
         logger.error(String.format("Service returned status code %s: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
     }
 
     try {
+      System.out.println("getInstanceDestination() result:");
       // begin-get_instance_destination
       GetInstanceDestinationOptions getInstanceDestinationOptions = new GetInstanceDestinationOptions.Builder()
         .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
         .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
         .build();
 
-      Response<Void> response = secretsManagerInstanceManagementService.getInstanceDestination(getInstanceDestinationOptions).execute();
+      Response<IbmCloudDatabaseDestination> response = secretsManagerInstanceManagementService.getInstanceDestination(getInstanceDestinationOptions).execute();
+      IbmCloudDatabaseDestination ibmCloudDatabaseDestination = response.getResult();
+
+      System.out.println(ibmCloudDatabaseDestination);
       // end-get_instance_destination
-      System.out.printf("getInstanceDestination() response status code: %d%n", response.getStatusCode());
     } catch (ServiceResponseException e) {
         logger.error(String.format("Service returned status code %s: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
     }
 
     try {
+      System.out.println("updateInstanceDestination() result:");
       // begin-update_instance_destination
+      DestinationPatch destinationPatchModel = new DestinationPatch.Builder()
+        .name("my-postgres-updated")
+        .description("Production PostgreSQL database")
+        .build();
+      Map<String, Object> destinationPatchModelAsPatch = destinationPatchModel.asPatch();
       UpdateInstanceDestinationOptions updateInstanceDestinationOptions = new UpdateInstanceDestinationOptions.Builder()
         .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
         .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
-        .requestBody(new java.util.HashMap<String, Object>())
+        .destinationPatch(destinationPatchModelAsPatch)
         .build();
 
-      Response<Void> response = secretsManagerInstanceManagementService.updateInstanceDestination(updateInstanceDestinationOptions).execute();
+      Response<IbmCloudDatabaseDestination> response = secretsManagerInstanceManagementService.updateInstanceDestination(updateInstanceDestinationOptions).execute();
+      IbmCloudDatabaseDestination ibmCloudDatabaseDestination = response.getResult();
+
+      System.out.println(ibmCloudDatabaseDestination);
       // end-update_instance_destination
-      System.out.printf("updateInstanceDestination() response status code: %d%n", response.getStatusCode());
     } catch (ServiceResponseException e) {
         logger.error(String.format("Service returned status code %s: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
@@ -179,15 +199,18 @@ public class SecretsManagerInstanceManagementExamples {
     }
 
     try {
+      System.out.println("deleteInstanceDestination() result:");
       // begin-delete_instance_destination
       DeleteInstanceDestinationOptions deleteInstanceDestinationOptions = new DeleteInstanceDestinationOptions.Builder()
         .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
         .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
         .build();
 
-      Response<Void> response = secretsManagerInstanceManagementService.deleteInstanceDestination(deleteInstanceDestinationOptions).execute();
+      Response<IbmCloudDatabaseDestination> response = secretsManagerInstanceManagementService.deleteInstanceDestination(deleteInstanceDestinationOptions).execute();
+      IbmCloudDatabaseDestination ibmCloudDatabaseDestination = response.getResult();
+
+      System.out.println(ibmCloudDatabaseDestination);
       // end-delete_instance_destination
-      System.out.printf("deleteInstanceDestination() response status code: %d%n", response.getStatusCode());
     } catch (ServiceResponseException e) {
         logger.error(String.format("Service returned status code %s: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);

@@ -22,13 +22,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * A destination resource representing a private network link to a service instance on a Vault Dedicated cluster.
  */
 public class Destination extends GenericModel {
-  @SuppressWarnings("unused")
-  protected static String discriminatorPropertyName = "type";
-  protected static java.util.Map<String, Class<?>> discriminatorMapping;
-  static {
-    discriminatorMapping = new java.util.HashMap<>();
-    discriminatorMapping.put("ibm_cloud_database", IbmCloudDatabaseDestination.class);
-  }
+
   /**
    * Destination type.
    */
@@ -39,11 +33,12 @@ public class Destination extends GenericModel {
 
   /**
    * Destination state:
-   * - `not_started`: Job accepted, waiting to start provisioning
+   * - `not_started`: Initial state before the first provisioning attempt begins
    * - `provisioning`: Provisioning in progress — poll until `succeeded` or `failed`
    * - `succeeded`: Destination ready and usable
-   * - `failed`: Provisioning failed — terminal state; delete and recreate.
-   *   A `failed` destination still counts against the per-instance quota until deleted.
+   * - `failed`: Terminal state reached when provisioning or deletion fails. A `failed` destination still counts against
+   * the per-instance quota until deleted.
+   * - `deleting`: Deletion in progress.
    */
   public interface State {
     /** not_started. */
@@ -54,6 +49,8 @@ public class Destination extends GenericModel {
     String SUCCEEDED = "succeeded";
     /** failed. */
     String FAILED = "failed";
+    /** deleting. */
+    String DELETING = "deleting";
   }
 
   protected String id;
@@ -68,6 +65,7 @@ public class Destination extends GenericModel {
   protected Date updatedAt;
   @SerializedName("created_by")
   protected String createdBy;
+  protected String message;
 
   protected Destination() { }
 
@@ -130,11 +128,12 @@ public class Destination extends GenericModel {
    * Gets the state.
    *
    * Destination state:
-   * - `not_started`: Job accepted, waiting to start provisioning
+   * - `not_started`: Initial state before the first provisioning attempt begins
    * - `provisioning`: Provisioning in progress — poll until `succeeded` or `failed`
    * - `succeeded`: Destination ready and usable
-   * - `failed`: Provisioning failed — terminal state; delete and recreate.
-   *   A `failed` destination still counts against the per-instance quota until deleted.
+   * - `failed`: Terminal state reached when provisioning or deletion fails. A `failed` destination still counts against
+   * the per-instance quota until deleted.
+   * - `deleting`: Deletion in progress.
    *
    * @return the state
    */
@@ -173,6 +172,18 @@ public class Destination extends GenericModel {
    */
   public String getCreatedBy() {
     return createdBy;
+  }
+
+  /**
+   * Gets the message.
+   *
+   * Human-readable message providing additional context about the current state. Present only when non-empty — set when
+   * `state` is `failed`, describing why provisioning or deletion failed.
+   *
+   * @return the message
+   */
+  public String getMessage() {
+    return message;
   }
 }
 

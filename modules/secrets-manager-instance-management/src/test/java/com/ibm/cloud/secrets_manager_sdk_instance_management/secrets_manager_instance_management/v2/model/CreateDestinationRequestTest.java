@@ -14,7 +14,7 @@
 package com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Destination;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateDestinationRequest;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -23,21 +23,16 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 /**
- * Unit test class for the Destination model.
+ * Unit test class for the CreateDestinationRequest model.
  */
-public class DestinationTest {
+public class CreateDestinationRequestTest {
   final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
   final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
+  // TODO: Add tests for models that are abstract
   @Test
-  public void testDestination() throws Throwable {
-    Destination destinationModel = new Destination();
-    assertNull(destinationModel.getId());
-    assertNull(destinationModel.getName());
-    assertNull(destinationModel.getType());
-    assertNull(destinationModel.getDescription());
-    assertNull(destinationModel.getState());
-    assertNull(destinationModel.getCreatedAt());
-    assertNull(destinationModel.getUpdatedAt());
+  public void testCreateDestinationRequest() throws Throwable {
+    CreateDestinationRequest createDestinationRequestModel = new CreateDestinationRequest();
+    assertNotNull(createDestinationRequestModel);
   }
 }

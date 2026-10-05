@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.116.0-df613dbc-20260803-154903
+ * IBM OpenAPI SDK Code Generator Version: 3.117.1-c28a0a4f-20260924-094841
  */
 
 package com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2;
@@ -33,6 +33,7 @@ import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_ins
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationCollection;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceOptions;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.IbmCloudDatabaseDestination;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Instance;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.ListInstanceDestinationsOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Token;
@@ -136,6 +137,8 @@ public class SecretsManagerInstanceManagement extends BaseService {
    *
    * Generate a Vault admin token for authenticating to your Vault Dedicated cluster. The token is valid for 1 hour and
    * grants administrative privileges. Use only for initial setup and cluster management, then revoke immediately.
+   * Optionally, set response_wrapping to true in the request body to receive a Vault response-wrapped token instead of
+   * a plain admin token.
    *
    * @param createVaultAdmintokenOptions the {@link CreateVaultAdmintokenOptions} containing the options for the call
    * @return a {@link ServiceCall} with a result of type {@link Token}
@@ -151,6 +154,11 @@ public class SecretsManagerInstanceManagement extends BaseService {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
+    final JsonObject contentJson = new JsonObject();
+    if (createVaultAdmintokenOptions.responseWrapping() != null) {
+      contentJson.addProperty("response_wrapping", createVaultAdmintokenOptions.responseWrapping());
+    }
+    builder.bodyJson(contentJson);
     ResponseConverter<Token> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Token>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
@@ -234,7 +242,7 @@ public class SecretsManagerInstanceManagement extends BaseService {
    *
    * Create a new destination between your Vault Dedicated cluster and an IBM Cloud service instance.
    *
-   * Returns `202 Accepted` with `state: not_started`. Provisioning completes asynchronously — poll `GET
+   * Returns `202 Accepted` with `state: provisioning`. Provisioning completes asynchronously — poll `GET
    * /destinations/{id}` until `state` transitions to `succeeded` or `failed`.
    *
    * **Beta**: Only Gen 1 (Classic) IBM Cloud Database service instances are supported. Gen 2 instances are rejected
@@ -244,9 +252,9 @@ public class SecretsManagerInstanceManagement extends BaseService {
    * **Quota**: Maximum 20 destinations per instance.
    *
    * @param createInstanceDestinationOptions the {@link CreateInstanceDestinationOptions} containing the options for the call
-   * @return a {@link ServiceCall} with a void result
+   * @return a {@link ServiceCall} with a result of type {@link IbmCloudDatabaseDestination}
    */
-  public ServiceCall<Void> createInstanceDestination(CreateInstanceDestinationOptions createInstanceDestinationOptions) {
+  public ServiceCall<IbmCloudDatabaseDestination> createInstanceDestination(CreateInstanceDestinationOptions createInstanceDestinationOptions) {
     com.ibm.cloud.sdk.core.util.Validator.notNull(createInstanceDestinationOptions,
       "createInstanceDestinationOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
@@ -257,21 +265,9 @@ public class SecretsManagerInstanceManagement extends BaseService {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
-    final JsonObject contentJson = new JsonObject();
-    if (createInstanceDestinationOptions.name() != null) {
-      contentJson.addProperty("name", createInstanceDestinationOptions.name());
-    }
-    if (createInstanceDestinationOptions.type() != null) {
-      contentJson.addProperty("type", createInstanceDestinationOptions.type());
-    }
-    if (createInstanceDestinationOptions.description() != null) {
-      contentJson.addProperty("description", createInstanceDestinationOptions.description());
-    }
-    if (createInstanceDestinationOptions.crn() != null) {
-      contentJson.addProperty("crn", createInstanceDestinationOptions.crn());
-    }
-    builder.bodyJson(contentJson);
-    ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
+    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(createInstanceDestinationOptions.destinationPrototype()), "application/json");
+    ResponseConverter<IbmCloudDatabaseDestination> responseConverter =
+      ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<IbmCloudDatabaseDestination>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
   }
 
@@ -280,13 +276,13 @@ public class SecretsManagerInstanceManagement extends BaseService {
    *
    * Retrieve details and current state for a specific destination for your Vault Dedicated cluster.
    *
-   * Returns `404` if the destination does not exist. A deleted destination is immediately absent from GET — the
-   * `deleting` state is internal only and never returned to callers.
+   * Returns `404` if the destination does not exist. A destination undergoing deletion may appear with a `deleting`
+   * state before it is fully removed.
    *
    * @param getInstanceDestinationOptions the {@link GetInstanceDestinationOptions} containing the options for the call
-   * @return a {@link ServiceCall} with a void result
+   * @return a {@link ServiceCall} with a result of type {@link IbmCloudDatabaseDestination}
    */
-  public ServiceCall<Void> getInstanceDestination(GetInstanceDestinationOptions getInstanceDestinationOptions) {
+  public ServiceCall<IbmCloudDatabaseDestination> getInstanceDestination(GetInstanceDestinationOptions getInstanceDestinationOptions) {
     com.ibm.cloud.sdk.core.util.Validator.notNull(getInstanceDestinationOptions,
       "getInstanceDestinationOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
@@ -298,7 +294,8 @@ public class SecretsManagerInstanceManagement extends BaseService {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
-    ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
+    ResponseConverter<IbmCloudDatabaseDestination> responseConverter =
+      ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<IbmCloudDatabaseDestination>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
   }
 
@@ -309,9 +306,9 @@ public class SecretsManagerInstanceManagement extends BaseService {
    * fields are immutable after creation.
    *
    * @param updateInstanceDestinationOptions the {@link UpdateInstanceDestinationOptions} containing the options for the call
-   * @return a {@link ServiceCall} with a void result
+   * @return a {@link ServiceCall} with a result of type {@link IbmCloudDatabaseDestination}
    */
-  public ServiceCall<Void> updateInstanceDestination(UpdateInstanceDestinationOptions updateInstanceDestinationOptions) {
+  public ServiceCall<IbmCloudDatabaseDestination> updateInstanceDestination(UpdateInstanceDestinationOptions updateInstanceDestinationOptions) {
     com.ibm.cloud.sdk.core.util.Validator.notNull(updateInstanceDestinationOptions,
       "updateInstanceDestinationOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
@@ -323,25 +320,26 @@ public class SecretsManagerInstanceManagement extends BaseService {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
-    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithSerializeNulls().toJson(updateInstanceDestinationOptions.requestBody()), "application/merge-patch+json");
-    ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
+    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithSerializeNulls().toJson(updateInstanceDestinationOptions.destinationPatch()), "application/merge-patch+json");
+    ResponseConverter<IbmCloudDatabaseDestination> responseConverter =
+      ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<IbmCloudDatabaseDestination>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
   }
 
   /**
    * Delete destination.
    *
-   * Delete a destination for your Vault Dedicated cluster. A deleted destination is immediately absent from GET after
-   * this call returns 204.
+   * Delete a destination for your Vault Dedicated cluster. Returns `202 Accepted` and begins deletion asynchronously —
+   * the destination is removed from `GET /destinations` once deletion completes.
    *
    * A `failed` destination still counts against the per-instance quota until deleted.
    *
    * **Rate Limit**: 10 requests per instance per minute.
    *
    * @param deleteInstanceDestinationOptions the {@link DeleteInstanceDestinationOptions} containing the options for the call
-   * @return a {@link ServiceCall} with a void result
+   * @return a {@link ServiceCall} with a result of type {@link IbmCloudDatabaseDestination}
    */
-  public ServiceCall<Void> deleteInstanceDestination(DeleteInstanceDestinationOptions deleteInstanceDestinationOptions) {
+  public ServiceCall<IbmCloudDatabaseDestination> deleteInstanceDestination(DeleteInstanceDestinationOptions deleteInstanceDestinationOptions) {
     com.ibm.cloud.sdk.core.util.Validator.notNull(deleteInstanceDestinationOptions,
       "deleteInstanceDestinationOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
@@ -352,7 +350,9 @@ public class SecretsManagerInstanceManagement extends BaseService {
     for (Entry<String, String> header : sdkHeaders.entrySet()) {
       builder.header(header.getKey(), header.getValue());
     }
-    ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
+    builder.header("Accept", "application/json");
+    ResponseConverter<IbmCloudDatabaseDestination> responseConverter =
+      ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<IbmCloudDatabaseDestination>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
   }
 

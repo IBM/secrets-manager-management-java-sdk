@@ -24,7 +24,7 @@ public class UpdateInstanceDestinationOptions extends GenericModel {
 
   protected String instanceId;
   protected String destinationId;
-  protected Map<String, Object> requestBody;
+  protected Map<String, Object> destinationPatch;
 
   /**
    * Builder.
@@ -32,7 +32,7 @@ public class UpdateInstanceDestinationOptions extends GenericModel {
   public static class Builder {
     private String instanceId;
     private String destinationId;
-    private Map<String, Object> requestBody;
+    private Map<String, Object> destinationPatch;
 
     /**
      * Instantiates a new Builder from an existing UpdateInstanceDestinationOptions instance.
@@ -42,7 +42,7 @@ public class UpdateInstanceDestinationOptions extends GenericModel {
     private Builder(UpdateInstanceDestinationOptions updateInstanceDestinationOptions) {
       this.instanceId = updateInstanceDestinationOptions.instanceId;
       this.destinationId = updateInstanceDestinationOptions.destinationId;
-      this.requestBody = updateInstanceDestinationOptions.requestBody;
+      this.destinationPatch = updateInstanceDestinationOptions.destinationPatch;
     }
 
     /**
@@ -56,12 +56,12 @@ public class UpdateInstanceDestinationOptions extends GenericModel {
      *
      * @param instanceId the instanceId
      * @param destinationId the destinationId
-     * @param requestBody the requestBody
+     * @param destinationPatch the destinationPatch
      */
-    public Builder(String instanceId, String destinationId, Map<String, Object> requestBody) {
+    public Builder(String instanceId, String destinationId, Map<String, Object> destinationPatch) {
       this.instanceId = instanceId;
       this.destinationId = destinationId;
-      this.requestBody = requestBody;
+      this.destinationPatch = destinationPatch;
     }
 
     /**
@@ -96,13 +96,13 @@ public class UpdateInstanceDestinationOptions extends GenericModel {
     }
 
     /**
-     * Set the requestBody.
+     * Set the destinationPatch.
      *
-     * @param requestBody the requestBody
+     * @param destinationPatch the destinationPatch
      * @return the UpdateInstanceDestinationOptions builder
      */
-    public Builder requestBody(Map<String, Object> requestBody) {
-      this.requestBody = requestBody;
+    public Builder destinationPatch(Map<String, Object> destinationPatch) {
+      this.destinationPatch = destinationPatch;
       return this;
     }
   }
@@ -114,11 +114,11 @@ public class UpdateInstanceDestinationOptions extends GenericModel {
       "instanceId cannot be empty");
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.destinationId,
       "destinationId cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.requestBody,
-      "requestBody cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.destinationPatch,
+      "destinationPatch cannot be null");
     instanceId = builder.instanceId;
     destinationId = builder.destinationId;
-    requestBody = builder.requestBody;
+    destinationPatch = builder.destinationPatch;
   }
 
   /**
@@ -153,14 +153,14 @@ public class UpdateInstanceDestinationOptions extends GenericModel {
   }
 
   /**
-   * Gets the requestBody.
+   * Gets the destinationPatch.
    *
    * JSON Merge-Patch content for update_instance_destination.
    *
-   * @return the requestBody
+   * @return the destinationPatch
    */
-  public Map<String, Object> requestBody() {
-    return requestBody;
+  public Map<String, Object> destinationPatch() {
+    return destinationPatch;
   }
 }
 

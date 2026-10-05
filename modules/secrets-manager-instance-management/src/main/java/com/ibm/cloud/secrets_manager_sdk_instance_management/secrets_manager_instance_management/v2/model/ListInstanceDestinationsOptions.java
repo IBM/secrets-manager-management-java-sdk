@@ -32,6 +32,8 @@ public class ListInstanceDestinationsOptions extends GenericModel {
     String SUCCEEDED = "succeeded";
     /** failed. */
     String FAILED = "failed";
+    /** deleting. */
+    String DELETING = "deleting";
   }
 
   protected String instanceId;
