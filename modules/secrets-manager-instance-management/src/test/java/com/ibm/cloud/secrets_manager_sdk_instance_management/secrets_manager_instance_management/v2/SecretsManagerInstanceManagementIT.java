@@ -18,18 +18,23 @@ import com.ibm.cloud.sdk.core.service.exception.ServiceResponseException;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.CredentialUtils;
 import com.ibm.cloud.sdk.core.util.DateUtils;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateDestinationRequest;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateDestinationRequestIbmCloudDatabaseDestinationPrototype;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Destination;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationCollection;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationPatch;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.IbmCloudDatabaseDestination;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Instance;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.ListInstanceDestinationsOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Token;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.TokenPlainAdminToken;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.TokenWrappedAdminToken;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.UpdateInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedCluster;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedEndpointsData;
@@ -89,6 +94,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
     try {
       CreateVaultAdmintokenOptions createVaultAdmintokenOptions = new CreateVaultAdmintokenOptions.Builder()
         .id("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+        .responseWrapping(true)
         .build();
 
       // Invoke operation
@@ -154,19 +160,27 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   @Test(dependsOnMethods = { "testListInstanceDestinations" })
   public void testCreateInstanceDestination() throws Exception {
     try {
-      CreateInstanceDestinationOptions createInstanceDestinationOptions = new CreateInstanceDestinationOptions.Builder()
-        .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      CreateDestinationRequestIbmCloudDatabaseDestinationPrototype createDestinationRequestModel = new CreateDestinationRequestIbmCloudDatabaseDestinationPrototype.Builder()
         .name("my-postgres")
         .type("ibm_cloud_database")
         .description("Production PostgreSQL database")
         .crn("crn:v1:bluemix:public:databases-for-postgresql:us-south:a/e91c8f42b3d74e1a9c2f05d8b67a3e10:3f8b1c7a-9d42-4e6f-b8a5-2c1d9e7f4b83::")
         .build();
 
+      CreateInstanceDestinationOptions createInstanceDestinationOptions = new CreateInstanceDestinationOptions.Builder()
+        .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+        .destinationPrototype(createDestinationRequestModel)
+        .build();
+
       // Invoke operation
-      Response<Void> response = service.createInstanceDestination(createInstanceDestinationOptions).execute();
+      Response<IbmCloudDatabaseDestination> response = service.createInstanceDestination(createInstanceDestinationOptions).execute();
       // Validate response
       assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
+      assertEquals(response.getStatusCode(), 202);
+
+      IbmCloudDatabaseDestination ibmCloudDatabaseDestinationResult = response.getResult();
+      assertNotNull(ibmCloudDatabaseDestinationResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -182,10 +196,14 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
         .build();
 
       // Invoke operation
-      Response<Void> response = service.getInstanceDestination(getInstanceDestinationOptions).execute();
+      Response<IbmCloudDatabaseDestination> response = service.getInstanceDestination(getInstanceDestinationOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 200);
+
+      IbmCloudDatabaseDestination ibmCloudDatabaseDestinationResult = response.getResult();
+      assertNotNull(ibmCloudDatabaseDestinationResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -195,17 +213,27 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   @Test(dependsOnMethods = { "testGetInstanceDestination" })
   public void testUpdateInstanceDestination() throws Exception {
     try {
+      DestinationPatch destinationPatchModel = new DestinationPatch.Builder()
+        .name("my-postgres-updated")
+        .description("Production PostgreSQL database")
+        .build();
+      Map<String, Object> destinationPatchModelAsPatch = destinationPatchModel.asPatch();
+
       UpdateInstanceDestinationOptions updateInstanceDestinationOptions = new UpdateInstanceDestinationOptions.Builder()
         .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
         .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
-        .requestBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .destinationPatch(destinationPatchModelAsPatch)
         .build();
 
       // Invoke operation
-      Response<Void> response = service.updateInstanceDestination(updateInstanceDestinationOptions).execute();
+      Response<IbmCloudDatabaseDestination> response = service.updateInstanceDestination(updateInstanceDestinationOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 200);
+
+      IbmCloudDatabaseDestination ibmCloudDatabaseDestinationResult = response.getResult();
+      assertNotNull(ibmCloudDatabaseDestinationResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -239,10 +267,14 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
         .build();
 
       // Invoke operation
-      Response<Void> response = service.deleteInstanceDestination(deleteInstanceDestinationOptions).execute();
+      Response<IbmCloudDatabaseDestination> response = service.deleteInstanceDestination(deleteInstanceDestinationOptions).execute();
       // Validate response
       assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
+      assertEquals(response.getStatusCode(), 202);
+
+      IbmCloudDatabaseDestination ibmCloudDatabaseDestinationResult = response.getResult();
+      assertNotNull(ibmCloudDatabaseDestinationResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
