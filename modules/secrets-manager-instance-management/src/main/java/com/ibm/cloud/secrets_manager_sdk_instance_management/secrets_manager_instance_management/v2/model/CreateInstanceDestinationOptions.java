@@ -20,29 +20,15 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CreateInstanceDestinationOptions extends GenericModel {
 
-  /**
-   * Destination type.
-   */
-  public interface Type {
-    /** ibm_cloud_database. */
-    String IBM_CLOUD_DATABASE = "ibm_cloud_database";
-  }
-
   protected String instanceId;
-  protected String name;
-  protected String type;
-  protected String description;
-  protected String crn;
+  protected CreateDestinationRequest destinationPrototype;
 
   /**
    * Builder.
    */
   public static class Builder {
     private String instanceId;
-    private String name;
-    private String type;
-    private String description;
-    private String crn;
+    private CreateDestinationRequest destinationPrototype;
 
     /**
      * Instantiates a new Builder from an existing CreateInstanceDestinationOptions instance.
@@ -51,10 +37,7 @@ public class CreateInstanceDestinationOptions extends GenericModel {
      */
     private Builder(CreateInstanceDestinationOptions createInstanceDestinationOptions) {
       this.instanceId = createInstanceDestinationOptions.instanceId;
-      this.name = createInstanceDestinationOptions.name;
-      this.type = createInstanceDestinationOptions.type;
-      this.description = createInstanceDestinationOptions.description;
-      this.crn = createInstanceDestinationOptions.crn;
+      this.destinationPrototype = createInstanceDestinationOptions.destinationPrototype;
     }
 
     /**
@@ -67,9 +50,11 @@ public class CreateInstanceDestinationOptions extends GenericModel {
      * Instantiates a new builder with required properties.
      *
      * @param instanceId the instanceId
+     * @param destinationPrototype the destinationPrototype
      */
-    public Builder(String instanceId) {
+    public Builder(String instanceId, CreateDestinationRequest destinationPrototype) {
       this.instanceId = instanceId;
+      this.destinationPrototype = destinationPrototype;
     }
 
     /**
@@ -93,46 +78,13 @@ public class CreateInstanceDestinationOptions extends GenericModel {
     }
 
     /**
-     * Set the name.
+     * Set the destinationPrototype.
      *
-     * @param name the name
+     * @param destinationPrototype the destinationPrototype
      * @return the CreateInstanceDestinationOptions builder
      */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
-    }
-
-    /**
-     * Set the type.
-     *
-     * @param type the type
-     * @return the CreateInstanceDestinationOptions builder
-     */
-    public Builder type(String type) {
-      this.type = type;
-      return this;
-    }
-
-    /**
-     * Set the description.
-     *
-     * @param description the description
-     * @return the CreateInstanceDestinationOptions builder
-     */
-    public Builder description(String description) {
-      this.description = description;
-      return this;
-    }
-
-    /**
-     * Set the crn.
-     *
-     * @param crn the crn
-     * @return the CreateInstanceDestinationOptions builder
-     */
-    public Builder crn(String crn) {
-      this.crn = crn;
+    public Builder destinationPrototype(CreateDestinationRequest destinationPrototype) {
+      this.destinationPrototype = destinationPrototype;
       return this;
     }
   }
@@ -142,11 +94,10 @@ public class CreateInstanceDestinationOptions extends GenericModel {
   protected CreateInstanceDestinationOptions(Builder builder) {
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.instanceId,
       "instanceId cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.destinationPrototype,
+      "destinationPrototype cannot be null");
     instanceId = builder.instanceId;
-    name = builder.name;
-    type = builder.type;
-    description = builder.description;
-    crn = builder.crn;
+    destinationPrototype = builder.destinationPrototype;
   }
 
   /**
@@ -170,47 +121,14 @@ public class CreateInstanceDestinationOptions extends GenericModel {
   }
 
   /**
-   * Gets the name.
+   * Gets the destinationPrototype.
    *
-   * Destination name.
+   * Request body for creating a destination.
    *
-   * @return the name
+   * @return the destinationPrototype
    */
-  public String name() {
-    return name;
-  }
-
-  /**
-   * Gets the type.
-   *
-   * Destination type.
-   *
-   * @return the type
-   */
-  public String type() {
-    return type;
-  }
-
-  /**
-   * Gets the description.
-   *
-   * Optional description.
-   *
-   * @return the description
-   */
-  public String description() {
-    return description;
-  }
-
-  /**
-   * Gets the crn.
-   *
-   * IBM Cloud Database service instance CRN.
-   *
-   * @return the crn
-   */
-  public String crn() {
-    return crn;
+  public CreateDestinationRequest destinationPrototype() {
+    return destinationPrototype;
   }
 }
 

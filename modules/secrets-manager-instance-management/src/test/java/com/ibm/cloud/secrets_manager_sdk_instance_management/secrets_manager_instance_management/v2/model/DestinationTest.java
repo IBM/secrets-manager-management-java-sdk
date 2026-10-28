@@ -29,10 +29,15 @@ public class DestinationTest {
   final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
   final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  // TODO: Add tests for models that are abstract
   @Test
   public void testDestination() throws Throwable {
     Destination destinationModel = new Destination();
-    assertNotNull(destinationModel);
+    assertNull(destinationModel.getId());
+    assertNull(destinationModel.getName());
+    assertNull(destinationModel.getType());
+    assertNull(destinationModel.getDescription());
+    assertNull(destinationModel.getState());
+    assertNull(destinationModel.getCreatedAt());
+    assertNull(destinationModel.getUpdatedAt());
   }
 }
