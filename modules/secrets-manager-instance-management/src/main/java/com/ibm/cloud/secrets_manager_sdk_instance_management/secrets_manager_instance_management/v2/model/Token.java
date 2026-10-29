@@ -13,26 +13,45 @@
 
 package com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model;
 
+import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Admin Token response.
+ * Admin token response. Exactly one of token or wrapped_token is present, never both. wrapped_token is returned only
+ * when response_wrapping: true is requested.
+ *
+ * Classes which extend this class:
+ * - TokenPlainAdminToken
+ * - TokenWrappedAdminToken
  */
 public class Token extends GenericModel {
 
   protected String token;
+  @SerializedName("wrapped_token")
+  protected String wrappedToken;
 
   protected Token() { }
 
   /**
    * Gets the token.
    *
-   * The token value.
+   * The plain Vault admin token.
    *
    * @return the token
    */
   public String getToken() {
     return token;
+  }
+
+  /**
+   * Gets the wrappedToken.
+   *
+   * A Vault response-wrapped token. Present only when response_wrapping: true is requested.
+   *
+   * @return the wrappedToken
+   */
+  public String getWrappedToken() {
+    return wrappedToken;
   }
 }
 
