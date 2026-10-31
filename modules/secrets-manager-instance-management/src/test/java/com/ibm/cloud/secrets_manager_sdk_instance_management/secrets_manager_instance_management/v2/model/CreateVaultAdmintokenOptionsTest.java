@@ -32,9 +32,11 @@ public class CreateVaultAdmintokenOptionsTest {
   @Test
   public void testCreateVaultAdmintokenOptions() throws Throwable {
     CreateVaultAdmintokenOptions createVaultAdmintokenOptionsModel = new CreateVaultAdmintokenOptions.Builder()
-      .id("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+      .responseWrapping(true)
       .build();
-    assertEquals(createVaultAdmintokenOptionsModel.id(), "bfc50c2e-d66d-4f37-9ccf-9713f8325b39");
+    assertEquals(createVaultAdmintokenOptionsModel.id(), "fe5c5c27-3e44-474a-9484-55892e12d6d1");
+    assertEquals(createVaultAdmintokenOptionsModel.responseWrapping(), Boolean.valueOf(true));
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)
