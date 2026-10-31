@@ -32,10 +32,10 @@ public class DeleteInstanceDestinationOptionsTest {
   @Test
   public void testDeleteInstanceDestinationOptions() throws Throwable {
     DeleteInstanceDestinationOptions deleteInstanceDestinationOptionsModel = new DeleteInstanceDestinationOptions.Builder()
-      .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
       .build();
-    assertEquals(deleteInstanceDestinationOptionsModel.instanceId(), "bfc50c2e-d66d-4f37-9ccf-9713f8325b39");
+    assertEquals(deleteInstanceDestinationOptionsModel.instanceId(), "fe5c5c27-3e44-474a-9484-55892e12d6d1");
     assertEquals(deleteInstanceDestinationOptionsModel.destinationId(), "b2c3d4e5-f6a7-8901-bcde-f12345678901");
   }
 

@@ -32,13 +32,13 @@ public class UpdateInstanceDestinationOptionsTest {
   @Test
   public void testUpdateInstanceDestinationOptions() throws Throwable {
     UpdateInstanceDestinationOptions updateInstanceDestinationOptionsModel = new UpdateInstanceDestinationOptions.Builder()
-      .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
-      .requestBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .destinationPatch(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .build();
-    assertEquals(updateInstanceDestinationOptionsModel.instanceId(), "bfc50c2e-d66d-4f37-9ccf-9713f8325b39");
+    assertEquals(updateInstanceDestinationOptionsModel.instanceId(), "fe5c5c27-3e44-474a-9484-55892e12d6d1");
     assertEquals(updateInstanceDestinationOptionsModel.destinationId(), "b2c3d4e5-f6a7-8901-bcde-f12345678901");
-    assertEquals(updateInstanceDestinationOptionsModel.requestBody(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(updateInstanceDestinationOptionsModel.destinationPatch(), java.util.Collections.singletonMap("anyKey", "anyValue"));
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

@@ -19,18 +19,23 @@ import com.ibm.cloud.sdk.core.security.NoAuthAuthenticator;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.SecretsManagerInstanceManagement;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateDestinationRequest;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateDestinationRequestIbmCloudDatabaseDestinationPrototype;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Destination;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationCollection;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationPatch;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.IbmCloudDatabaseDestination;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Instance;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.ListInstanceDestinationsOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Token;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.TokenPlainAdminToken;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.TokenWrappedAdminToken;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.UpdateInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedCluster;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.VaultDedicatedEndpointsData;
@@ -89,8 +94,8 @@ public class SecretsManagerInstanceManagementTest {
   @Test
   public void testCreateVaultAdmintokenWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"token\": \"hvs.CAESIIG_PILmULFYOsEyWHxkZ2mF2a8V...example...p3ZnpWbDF1RUNjUkNTZEg\"}";
-    String createVaultAdmintokenPath = "/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39/admintokens";
+    String mockResponseBody = "{\"token\": \"hvs.CAESIC202dQW-jogohoywlivU-AMllTdeNT0QBiob9OBmyfnGigKImh2cy5yUkxpcmVaZURzTmw5cgtevFoyelBpYkguYW82SlMQyr0Q\"}";
+    String createVaultAdmintokenPath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/admintokens";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -98,7 +103,8 @@ public class SecretsManagerInstanceManagementTest {
 
     // Construct an instance of the CreateVaultAdmintokenOptions model
     CreateVaultAdmintokenOptions createVaultAdmintokenOptionsModel = new CreateVaultAdmintokenOptions.Builder()
-      .id("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+      .responseWrapping(true)
       .build();
 
     // Invoke createVaultAdmintoken() with a valid options model and verify the result
@@ -141,14 +147,14 @@ public class SecretsManagerInstanceManagementTest {
   public void testDeleteInstanceAdmintokensWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "";
-    String deleteInstanceAdmintokensPath = "/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39/admintokens";
+    String deleteInstanceAdmintokensPath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/admintokens";
     server.enqueue(new MockResponse()
       .setResponseCode(204)
       .setBody(mockResponseBody));
 
     // Construct an instance of the DeleteInstanceAdmintokensOptions model
     DeleteInstanceAdmintokensOptions deleteInstanceAdmintokensOptionsModel = new DeleteInstanceAdmintokensOptions.Builder()
-      .id("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .build();
 
     // Invoke deleteInstanceAdmintokens() with a valid options model and verify the result
@@ -190,8 +196,8 @@ public class SecretsManagerInstanceManagementTest {
   @Test
   public void testGetInstanceWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"id\": \"9fab83da-98cb-4f18-a7ba-b6f0435c9673\", \"name\": \"name\", \"instance_crn\": \"crn:v1:bluemix:public:secrets-manager:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::\", \"plan\": \"dedicated\", \"vault_cluster\": {\"status\": \"healthy\", \"version\": \"1.21.2+ent.hsm\"}, \"endpoints\": {\"public\": {\"vault_api\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud\", \"vault_ui\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud/ui\"}, \"private\": {\"vault_api\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud\", \"vault_ui\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud/ui\"}}, \"encryption\": {\"mode\": \"service_managed\", \"provider\": \"key_protect\", \"key_crn\": \"crn:v1:bluemix:public:kms:us-south:a/791f5fb10986423e97aa8512f18b7e65:31639268-42e8-4420-9872-590a6ee20506:key:b4af8f76-e6ea-4dc5-89cc-5f1b9bb207cc\"}, \"href\": \"https://us-south.secrets-manager.cloud.ibm.com/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39\"}";
-    String getInstancePath = "/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39";
+    String mockResponseBody = "{\"id\": \"9fab83da-98cb-4f18-a7ba-b6f0435c9673\", \"name\": \"name\", \"instance_crn\": \"crn:v1:bluemix:public:secrets-manager:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::\", \"plan\": \"dedicated\", \"vault_cluster\": {\"status\": \"healthy\", \"version\": \"1.21.2+ent.hsm\"}, \"endpoints\": {\"public\": {\"vault_api\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud\", \"vault_ui\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud/ui\"}, \"private\": {\"vault_api\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud\", \"vault_ui\": \"https://f85f512b-e21b-4a9a-ac45-7bbc2f5cew2e.us-south.secrets-manager.appdomain.cloud/ui\"}}, \"encryption\": {\"mode\": \"service_managed\", \"provider\": \"key_protect\", \"key_crn\": \"crn:v1:bluemix:public:kms:us-south:a/791f5fb10986423e97aa8512f18b7e65:31639268-42e8-4420-9872-590a6ee20506:key:b4af8f76-e6ea-4dc5-89cc-5f1b9bb207cc\"}, \"href\": \"https://us-south.secrets-manager.cloud.ibm.com/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1\"}";
+    String getInstancePath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -199,7 +205,7 @@ public class SecretsManagerInstanceManagementTest {
 
     // Construct an instance of the GetInstanceOptions model
     GetInstanceOptions getInstanceOptionsModel = new GetInstanceOptions.Builder()
-      .id("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .build();
 
     // Invoke getInstance() with a valid options model and verify the result
@@ -241,8 +247,8 @@ public class SecretsManagerInstanceManagementTest {
   @Test
   public void testListInstanceDestinationsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"destinations\": [{\"id\": \"9fab83da-98cb-4f18-a7ba-b6f0435c9673\", \"href\": \"https://us-south.secrets-manager.cloud.ibm.com/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39/destinations/ce8aa9a4-8cde-4b63-8156-d4a8b252beeb\", \"name\": \"name\", \"type\": \"ibm_cloud_database\", \"description\": \"description\", \"state\": \"not_started\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"crn\": \"crn\"}], \"total\": 0}";
-    String listInstanceDestinationsPath = "/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39/destinations";
+    String mockResponseBody = "{\"destinations\": [{\"id\": \"9fab83da-98cb-4f18-a7ba-b6f0435c9673\", \"href\": \"https://us-south.secrets-manager.cloud.ibm.com/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations/ce8aa9a4-8cde-4b63-8156-d4a8b252beeb\", \"name\": \"name\", \"type\": \"ibm_cloud_database\", \"description\": \"description\", \"state\": \"not_started\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"message\": \"failed to provision\"}], \"total\": 0}";
+    String listInstanceDestinationsPath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -250,7 +256,7 @@ public class SecretsManagerInstanceManagementTest {
 
     // Construct an instance of the ListInstanceDestinationsOptions model
     ListInstanceDestinationsOptions listInstanceDestinationsOptionsModel = new ListInstanceDestinationsOptions.Builder()
-      .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .state("not_started")
       .build();
 
@@ -294,26 +300,32 @@ public class SecretsManagerInstanceManagementTest {
   @Test
   public void testCreateInstanceDestinationWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "";
-    String createInstanceDestinationPath = "/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39/destinations";
+    String mockResponseBody = "{\"id\": \"9fab83da-98cb-4f18-a7ba-b6f0435c9673\", \"href\": \"https://us-south.secrets-manager.cloud.ibm.com/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations/ce8aa9a4-8cde-4b63-8156-d4a8b252beeb\", \"name\": \"name\", \"type\": \"ibm_cloud_database\", \"description\": \"description\", \"state\": \"not_started\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"message\": \"failed to provision\", \"crn\": \"crn\"}";
+    String createInstanceDestinationPath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations";
     server.enqueue(new MockResponse()
-      .setResponseCode(201)
+      .setHeader("Content-type", "application/json")
+      .setResponseCode(202)
       .setBody(mockResponseBody));
 
-    // Construct an instance of the CreateInstanceDestinationOptions model
-    CreateInstanceDestinationOptions createInstanceDestinationOptionsModel = new CreateInstanceDestinationOptions.Builder()
-      .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+    // Construct an instance of the CreateDestinationRequestIbmCloudDatabaseDestinationPrototype model
+    CreateDestinationRequestIbmCloudDatabaseDestinationPrototype createDestinationRequestModel = new CreateDestinationRequestIbmCloudDatabaseDestinationPrototype.Builder()
       .name("my-postgres")
       .type("ibm_cloud_database")
       .description("Production PostgreSQL database")
       .crn("crn:v1:bluemix:public:databases-for-postgresql:us-south:a/e91c8f42b3d74e1a9c2f05d8b67a3e10:3f8b1c7a-9d42-4e6f-b8a5-2c1d9e7f4b83::")
       .build();
 
+    // Construct an instance of the CreateInstanceDestinationOptions model
+    CreateInstanceDestinationOptions createInstanceDestinationOptionsModel = new CreateInstanceDestinationOptions.Builder()
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+      .destinationPrototype(createDestinationRequestModel)
+      .build();
+
     // Invoke createInstanceDestination() with a valid options model and verify the result
-    Response<Void> response = secretsManagerInstanceManagementService.createInstanceDestination(createInstanceDestinationOptionsModel).execute();
+    Response<IbmCloudDatabaseDestination> response = secretsManagerInstanceManagementService.createInstanceDestination(createInstanceDestinationOptionsModel).execute();
     assertNotNull(response);
-    Void responseObj = response.getResult();
-    assertNull(responseObj);
+    IbmCloudDatabaseDestination responseObj = response.getResult();
+    assertNotNull(responseObj);
 
     // Verify the contents of the request sent to the mock server
     RecordedRequest request = server.takeRequest();
@@ -348,23 +360,24 @@ public class SecretsManagerInstanceManagementTest {
   @Test
   public void testGetInstanceDestinationWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "";
-    String getInstanceDestinationPath = "/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39/destinations/b2c3d4e5-f6a7-8901-bcde-f12345678901";
+    String mockResponseBody = "{\"id\": \"9fab83da-98cb-4f18-a7ba-b6f0435c9673\", \"href\": \"https://us-south.secrets-manager.cloud.ibm.com/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations/ce8aa9a4-8cde-4b63-8156-d4a8b252beeb\", \"name\": \"name\", \"type\": \"ibm_cloud_database\", \"description\": \"description\", \"state\": \"not_started\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"message\": \"failed to provision\", \"crn\": \"crn\"}";
+    String getInstanceDestinationPath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations/b2c3d4e5-f6a7-8901-bcde-f12345678901";
     server.enqueue(new MockResponse()
+      .setHeader("Content-type", "application/json")
       .setResponseCode(200)
       .setBody(mockResponseBody));
 
     // Construct an instance of the GetInstanceDestinationOptions model
     GetInstanceDestinationOptions getInstanceDestinationOptionsModel = new GetInstanceDestinationOptions.Builder()
-      .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
       .build();
 
     // Invoke getInstanceDestination() with a valid options model and verify the result
-    Response<Void> response = secretsManagerInstanceManagementService.getInstanceDestination(getInstanceDestinationOptionsModel).execute();
+    Response<IbmCloudDatabaseDestination> response = secretsManagerInstanceManagementService.getInstanceDestination(getInstanceDestinationOptionsModel).execute();
     assertNotNull(response);
-    Void responseObj = response.getResult();
-    assertNull(responseObj);
+    IbmCloudDatabaseDestination responseObj = response.getResult();
+    assertNotNull(responseObj);
 
     // Verify the contents of the request sent to the mock server
     RecordedRequest request = server.takeRequest();
@@ -399,24 +412,32 @@ public class SecretsManagerInstanceManagementTest {
   @Test
   public void testUpdateInstanceDestinationWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "";
-    String updateInstanceDestinationPath = "/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39/destinations/b2c3d4e5-f6a7-8901-bcde-f12345678901";
+    String mockResponseBody = "{\"id\": \"9fab83da-98cb-4f18-a7ba-b6f0435c9673\", \"href\": \"https://us-south.secrets-manager.cloud.ibm.com/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations/ce8aa9a4-8cde-4b63-8156-d4a8b252beeb\", \"name\": \"name\", \"type\": \"ibm_cloud_database\", \"description\": \"description\", \"state\": \"not_started\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"message\": \"failed to provision\", \"crn\": \"crn\"}";
+    String updateInstanceDestinationPath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations/b2c3d4e5-f6a7-8901-bcde-f12345678901";
     server.enqueue(new MockResponse()
+      .setHeader("Content-type", "application/json")
       .setResponseCode(200)
       .setBody(mockResponseBody));
 
+    // Construct an instance of the DestinationPatch model
+    DestinationPatch destinationPatchModel = new DestinationPatch.Builder()
+      .name("my-postgres-updated")
+      .description("Production PostgreSQL database")
+      .build();
+    Map<String, Object> destinationPatchModelAsPatch = destinationPatchModel.asPatch();
+
     // Construct an instance of the UpdateInstanceDestinationOptions model
     UpdateInstanceDestinationOptions updateInstanceDestinationOptionsModel = new UpdateInstanceDestinationOptions.Builder()
-      .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
-      .requestBody(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .destinationPatch(destinationPatchModelAsPatch)
       .build();
 
     // Invoke updateInstanceDestination() with a valid options model and verify the result
-    Response<Void> response = secretsManagerInstanceManagementService.updateInstanceDestination(updateInstanceDestinationOptionsModel).execute();
+    Response<IbmCloudDatabaseDestination> response = secretsManagerInstanceManagementService.updateInstanceDestination(updateInstanceDestinationOptionsModel).execute();
     assertNotNull(response);
-    Void responseObj = response.getResult();
-    assertNull(responseObj);
+    IbmCloudDatabaseDestination responseObj = response.getResult();
+    assertNotNull(responseObj);
 
     // Verify the contents of the request sent to the mock server
     RecordedRequest request = server.takeRequest();
@@ -451,23 +472,24 @@ public class SecretsManagerInstanceManagementTest {
   @Test
   public void testDeleteInstanceDestinationWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "";
-    String deleteInstanceDestinationPath = "/v2/instances/bfc50c2e-d66d-4f37-9ccf-9713f8325b39/destinations/b2c3d4e5-f6a7-8901-bcde-f12345678901";
+    String mockResponseBody = "{\"id\": \"9fab83da-98cb-4f18-a7ba-b6f0435c9673\", \"href\": \"https://us-south.secrets-manager.cloud.ibm.com/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations/ce8aa9a4-8cde-4b63-8156-d4a8b252beeb\", \"name\": \"name\", \"type\": \"ibm_cloud_database\", \"description\": \"description\", \"state\": \"not_started\", \"created_at\": \"2019-01-01T12:00:00.000Z\", \"updated_at\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"message\": \"failed to provision\", \"crn\": \"crn\"}";
+    String deleteInstanceDestinationPath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/destinations/b2c3d4e5-f6a7-8901-bcde-f12345678901";
     server.enqueue(new MockResponse()
-      .setResponseCode(204)
+      .setHeader("Content-type", "application/json")
+      .setResponseCode(202)
       .setBody(mockResponseBody));
 
     // Construct an instance of the DeleteInstanceDestinationOptions model
     DeleteInstanceDestinationOptions deleteInstanceDestinationOptionsModel = new DeleteInstanceDestinationOptions.Builder()
-      .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
       .build();
 
     // Invoke deleteInstanceDestination() with a valid options model and verify the result
-    Response<Void> response = secretsManagerInstanceManagementService.deleteInstanceDestination(deleteInstanceDestinationOptionsModel).execute();
+    Response<IbmCloudDatabaseDestination> response = secretsManagerInstanceManagementService.deleteInstanceDestination(deleteInstanceDestinationOptionsModel).execute();
     assertNotNull(response);
-    Void responseObj = response.getResult();
-    assertNull(responseObj);
+    IbmCloudDatabaseDestination responseObj = response.getResult();
+    assertNotNull(responseObj);
 
     // Verify the contents of the request sent to the mock server
     RecordedRequest request = server.takeRequest();

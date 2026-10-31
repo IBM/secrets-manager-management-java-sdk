@@ -21,12 +21,14 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class CreateVaultAdmintokenOptions extends GenericModel {
 
   protected String id;
+  protected Boolean responseWrapping;
 
   /**
    * Builder.
    */
   public static class Builder {
     private String id;
+    private Boolean responseWrapping;
 
     /**
      * Instantiates a new Builder from an existing CreateVaultAdmintokenOptions instance.
@@ -35,6 +37,7 @@ public class CreateVaultAdmintokenOptions extends GenericModel {
      */
     private Builder(CreateVaultAdmintokenOptions createVaultAdmintokenOptions) {
       this.id = createVaultAdmintokenOptions.id;
+      this.responseWrapping = createVaultAdmintokenOptions.responseWrapping;
     }
 
     /**
@@ -71,6 +74,17 @@ public class CreateVaultAdmintokenOptions extends GenericModel {
       this.id = id;
       return this;
     }
+
+    /**
+     * Set the responseWrapping.
+     *
+     * @param responseWrapping the responseWrapping
+     * @return the CreateVaultAdmintokenOptions builder
+     */
+    public Builder responseWrapping(Boolean responseWrapping) {
+      this.responseWrapping = responseWrapping;
+      return this;
+    }
   }
 
   protected CreateVaultAdmintokenOptions() { }
@@ -79,6 +93,7 @@ public class CreateVaultAdmintokenOptions extends GenericModel {
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
       "id cannot be empty");
     id = builder.id;
+    responseWrapping = builder.responseWrapping;
   }
 
   /**
@@ -99,6 +114,18 @@ public class CreateVaultAdmintokenOptions extends GenericModel {
    */
   public String id() {
     return id;
+  }
+
+  /**
+   * Gets the responseWrapping.
+   *
+   * If true, returns a Vault response-wrapped token (wrapped_token). If false or absent, returns a plain admin token
+   * (token).
+   *
+   * @return the responseWrapping
+   */
+  public Boolean responseWrapping() {
+    return responseWrapping;
   }
 }
 

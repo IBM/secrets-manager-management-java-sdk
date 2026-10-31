@@ -32,10 +32,10 @@ public class ListInstanceDestinationsOptionsTest {
   @Test
   public void testListInstanceDestinationsOptions() throws Throwable {
     ListInstanceDestinationsOptions listInstanceDestinationsOptionsModel = new ListInstanceDestinationsOptions.Builder()
-      .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .state("not_started")
       .build();
-    assertEquals(listInstanceDestinationsOptionsModel.instanceId(), "bfc50c2e-d66d-4f37-9ccf-9713f8325b39");
+    assertEquals(listInstanceDestinationsOptionsModel.instanceId(), "fe5c5c27-3e44-474a-9484-55892e12d6d1");
     assertEquals(listInstanceDestinationsOptionsModel.state(), "not_started");
   }
 
