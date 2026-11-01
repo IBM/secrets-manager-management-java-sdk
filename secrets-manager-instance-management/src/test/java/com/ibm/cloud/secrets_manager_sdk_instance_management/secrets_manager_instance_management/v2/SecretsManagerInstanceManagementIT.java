@@ -81,7 +81,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   public void testCreateVaultAdmintoken() throws Exception {
     try {
       CreateVaultAdmintokenOptions createVaultAdmintokenOptions = new CreateVaultAdmintokenOptions.Builder()
-        .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+        .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
         .build();
 
       // Invoke operation
@@ -103,7 +103,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   public void testGetInstance() throws Exception {
     try {
       GetInstanceOptions getInstanceOptions = new GetInstanceOptions.Builder()
-        .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+        .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
         .build();
 
       // Invoke operation
@@ -125,7 +125,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   public void testDeleteInstanceAdmintokens() throws Exception {
     try {
       DeleteInstanceAdmintokensOptions deleteInstanceAdmintokensOptions = new DeleteInstanceAdmintokensOptions.Builder()
-        .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+        .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
         .build();
 
       // Invoke operation

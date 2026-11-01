@@ -32,10 +32,10 @@ public class GetInstanceDestinationOptionsTest {
   @Test
   public void testGetInstanceDestinationOptions() throws Throwable {
     GetInstanceDestinationOptions getInstanceDestinationOptionsModel = new GetInstanceDestinationOptions.Builder()
-      .instanceId("bfc50c2e-d66d-4f37-9ccf-9713f8325b39")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .destinationId("b2c3d4e5-f6a7-8901-bcde-f12345678901")
       .build();
-    assertEquals(getInstanceDestinationOptionsModel.instanceId(), "bfc50c2e-d66d-4f37-9ccf-9713f8325b39");
+    assertEquals(getInstanceDestinationOptionsModel.instanceId(), "fe5c5c27-3e44-474a-9484-55892e12d6d1");
     assertEquals(getInstanceDestinationOptionsModel.destinationId(), "b2c3d4e5-f6a7-8901-bcde-f12345678901");
   }
 
