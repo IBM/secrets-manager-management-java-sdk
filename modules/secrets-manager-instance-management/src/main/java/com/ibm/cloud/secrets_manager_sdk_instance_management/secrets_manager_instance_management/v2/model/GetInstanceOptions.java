@@ -20,13 +20,13 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetInstanceOptions extends GenericModel {
 
-  protected String id;
+  protected String instanceId;
 
   /**
    * Builder.
    */
   public static class Builder {
-    private String id;
+    private String instanceId;
 
     /**
      * Instantiates a new Builder from an existing GetInstanceOptions instance.
@@ -34,7 +34,7 @@ public class GetInstanceOptions extends GenericModel {
      * @param getInstanceOptions the instance to initialize the Builder with
      */
     private Builder(GetInstanceOptions getInstanceOptions) {
-      this.id = getInstanceOptions.id;
+      this.instanceId = getInstanceOptions.instanceId;
     }
 
     /**
@@ -46,10 +46,10 @@ public class GetInstanceOptions extends GenericModel {
     /**
      * Instantiates a new builder with required properties.
      *
-     * @param id the id
+     * @param instanceId the instanceId
      */
-    public Builder(String id) {
-      this.id = id;
+    public Builder(String instanceId) {
+      this.instanceId = instanceId;
     }
 
     /**
@@ -62,13 +62,13 @@ public class GetInstanceOptions extends GenericModel {
     }
 
     /**
-     * Set the id.
+     * Set the instanceId.
      *
-     * @param id the id
+     * @param instanceId the instanceId
      * @return the GetInstanceOptions builder
      */
-    public Builder id(String id) {
-      this.id = id;
+    public Builder instanceId(String instanceId) {
+      this.instanceId = instanceId;
       return this;
     }
   }
@@ -76,9 +76,9 @@ public class GetInstanceOptions extends GenericModel {
   protected GetInstanceOptions() { }
 
   protected GetInstanceOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    id = builder.id;
+    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.instanceId,
+      "instanceId cannot be empty");
+    instanceId = builder.instanceId;
   }
 
   /**
@@ -91,14 +91,14 @@ public class GetInstanceOptions extends GenericModel {
   }
 
   /**
-   * Gets the id.
+   * Gets the instanceId.
    *
    * Secrets Manager instance ID.
    *
-   * @return the id
+   * @return the instanceId
    */
-  public String id() {
-    return id;
+  public String instanceId() {
+    return instanceId;
   }
 }
 

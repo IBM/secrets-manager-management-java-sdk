@@ -19,8 +19,8 @@ import com.ibm.cloud.sdk.core.util.CredentialUtils;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateDestinationRequestIbmCloudDatabaseDestinationPrototype;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptions;
-import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceDestinationOptions;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteVaultAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationCollection;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationPatch;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceDestinationOptions;
@@ -71,7 +71,7 @@ public class SecretsManagerInstanceManagementExamples {
       System.out.println("createVaultAdmintoken() result:");
       // begin-create_vault_admintoken
       CreateVaultAdmintokenOptions createVaultAdmintokenOptions = new CreateVaultAdmintokenOptions.Builder()
-        .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+        .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
         .build();
 
       Response<Token> response = secretsManagerInstanceManagementService.createVaultAdmintoken(createVaultAdmintokenOptions).execute();
@@ -88,7 +88,7 @@ public class SecretsManagerInstanceManagementExamples {
       System.out.println("getInstance() result:");
       // begin-get_instance
       GetInstanceOptions getInstanceOptions = new GetInstanceOptions.Builder()
-        .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+        .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
         .build();
 
       Response<Instance> response = secretsManagerInstanceManagementService.getInstance(getInstanceOptions).execute();
@@ -185,14 +185,14 @@ public class SecretsManagerInstanceManagementExamples {
     }
 
     try {
-      // begin-delete_instance_admintokens
-      DeleteInstanceAdmintokensOptions deleteInstanceAdmintokensOptions = new DeleteInstanceAdmintokensOptions.Builder()
-        .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+      // begin-delete_vault_admintokens
+      DeleteVaultAdmintokensOptions deleteVaultAdmintokensOptions = new DeleteVaultAdmintokensOptions.Builder()
+        .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
         .build();
 
-      Response<Void> response = secretsManagerInstanceManagementService.deleteInstanceAdmintokens(deleteInstanceAdmintokensOptions).execute();
-      // end-delete_instance_admintokens
-      System.out.printf("deleteInstanceAdmintokens() response status code: %d%n", response.getStatusCode());
+      Response<Void> response = secretsManagerInstanceManagementService.deleteVaultAdmintokens(deleteVaultAdmintokensOptions).execute();
+      // end-delete_vault_admintokens
+      System.out.printf("deleteVaultAdmintokens() response status code: %d%n", response.getStatusCode());
     } catch (ServiceResponseException e) {
         logger.error(String.format("Service returned status code %s: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);

@@ -22,8 +22,8 @@ import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_ins
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateDestinationRequestIbmCloudDatabaseDestinationPrototype;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptions;
-import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceDestinationOptions;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteVaultAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Destination;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationCollection;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationPatch;
@@ -93,7 +93,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   public void testCreateVaultAdmintoken() throws Exception {
     try {
       CreateVaultAdmintokenOptions createVaultAdmintokenOptions = new CreateVaultAdmintokenOptions.Builder()
-        .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+        .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
         .responseWrapping(true)
         .build();
 
@@ -116,7 +116,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   public void testGetInstance() throws Exception {
     try {
       GetInstanceOptions getInstanceOptions = new GetInstanceOptions.Builder()
-        .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+        .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
         .build();
 
       // Invoke operation
@@ -192,7 +192,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
     try {
       GetInstanceDestinationOptions getInstanceDestinationOptions = new GetInstanceDestinationOptions.Builder()
         .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
-        .destinationId("a43b5c15-b5fa-4976-9d67-bd3ff2b9ecc8")
+        .destinationId("7c927cf8-23bb-4aed-9397-5a3a90d6c969")
         .build();
 
       // Invoke operation
@@ -221,7 +221,7 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
 
       UpdateInstanceDestinationOptions updateInstanceDestinationOptions = new UpdateInstanceDestinationOptions.Builder()
         .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
-        .destinationId("a43b5c15-b5fa-4976-9d67-bd3ff2b9ecc8")
+        .destinationId("7c927cf8-23bb-4aed-9397-5a3a90d6c969")
         .destinationPatch(destinationPatchModelAsPatch)
         .build();
 
@@ -241,14 +241,14 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
   }
 
   @Test(dependsOnMethods = { "testUpdateInstanceDestination" })
-  public void testDeleteInstanceAdmintokens() throws Exception {
+  public void testDeleteVaultAdmintokens() throws Exception {
     try {
-      DeleteInstanceAdmintokensOptions deleteInstanceAdmintokensOptions = new DeleteInstanceAdmintokensOptions.Builder()
-        .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+      DeleteVaultAdmintokensOptions deleteVaultAdmintokensOptions = new DeleteVaultAdmintokensOptions.Builder()
+        .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
         .build();
 
       // Invoke operation
-      Response<Void> response = service.deleteInstanceAdmintokens(deleteInstanceAdmintokensOptions).execute();
+      Response<Void> response = service.deleteVaultAdmintokens(deleteVaultAdmintokensOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 204);
@@ -258,12 +258,12 @@ public class SecretsManagerInstanceManagementIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test(dependsOnMethods = { "testDeleteInstanceAdmintokens" })
+  @Test(dependsOnMethods = { "testDeleteVaultAdmintokens" })
   public void testDeleteInstanceDestination() throws Exception {
     try {
       DeleteInstanceDestinationOptions deleteInstanceDestinationOptions = new DeleteInstanceDestinationOptions.Builder()
         .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
-        .destinationId("a43b5c15-b5fa-4976-9d67-bd3ff2b9ecc8")
+        .destinationId("7c927cf8-23bb-4aed-9397-5a3a90d6c969")
         .build();
 
       // Invoke operation

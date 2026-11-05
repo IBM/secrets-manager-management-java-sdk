@@ -20,14 +20,14 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CreateVaultAdmintokenOptions extends GenericModel {
 
-  protected String id;
+  protected String instanceId;
   protected Boolean responseWrapping;
 
   /**
    * Builder.
    */
   public static class Builder {
-    private String id;
+    private String instanceId;
     private Boolean responseWrapping;
 
     /**
@@ -36,7 +36,7 @@ public class CreateVaultAdmintokenOptions extends GenericModel {
      * @param createVaultAdmintokenOptions the instance to initialize the Builder with
      */
     private Builder(CreateVaultAdmintokenOptions createVaultAdmintokenOptions) {
-      this.id = createVaultAdmintokenOptions.id;
+      this.instanceId = createVaultAdmintokenOptions.instanceId;
       this.responseWrapping = createVaultAdmintokenOptions.responseWrapping;
     }
 
@@ -49,10 +49,10 @@ public class CreateVaultAdmintokenOptions extends GenericModel {
     /**
      * Instantiates a new builder with required properties.
      *
-     * @param id the id
+     * @param instanceId the instanceId
      */
-    public Builder(String id) {
-      this.id = id;
+    public Builder(String instanceId) {
+      this.instanceId = instanceId;
     }
 
     /**
@@ -65,13 +65,13 @@ public class CreateVaultAdmintokenOptions extends GenericModel {
     }
 
     /**
-     * Set the id.
+     * Set the instanceId.
      *
-     * @param id the id
+     * @param instanceId the instanceId
      * @return the CreateVaultAdmintokenOptions builder
      */
-    public Builder id(String id) {
-      this.id = id;
+    public Builder instanceId(String instanceId) {
+      this.instanceId = instanceId;
       return this;
     }
 
@@ -90,9 +90,9 @@ public class CreateVaultAdmintokenOptions extends GenericModel {
   protected CreateVaultAdmintokenOptions() { }
 
   protected CreateVaultAdmintokenOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    id = builder.id;
+    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.instanceId,
+      "instanceId cannot be empty");
+    instanceId = builder.instanceId;
     responseWrapping = builder.responseWrapping;
   }
 
@@ -106,14 +106,14 @@ public class CreateVaultAdmintokenOptions extends GenericModel {
   }
 
   /**
-   * Gets the id.
+   * Gets the instanceId.
    *
    * Secrets Manager instance ID.
    *
-   * @return the id
+   * @return the instanceId
    */
-  public String id() {
-    return id;
+  public String instanceId() {
+    return instanceId;
   }
 
   /**
