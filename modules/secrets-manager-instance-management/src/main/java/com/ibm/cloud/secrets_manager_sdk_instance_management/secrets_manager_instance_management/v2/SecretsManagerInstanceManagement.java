@@ -28,8 +28,8 @@ import com.ibm.cloud.sdk.core.util.ResponseConverterUtils;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.common.SdkCommon;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptions;
-import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceDestinationOptions;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteVaultAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationCollection;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.GetInstanceOptions;
@@ -46,7 +46,7 @@ import java.util.Map.Entry;
  * Use the IBM  Cloud® Secrets Manager Instance Management API to manage service instances of the Vault Dedicated plan.
  * - Get service instance details including cluster state, endpoints, and key management service.
  * - Generate a Vault admin token for authenticating to your Vault Dedicated cluster.
- * - Revoke all active Vault admin tokens.
+ * - Delete all active Vault admin tokens.
  * - Request payloads must not exceed 1 MB; requests larger than this limit will be rejected with a `413 Payload Too
  * Large` response.
  *
@@ -136,7 +136,7 @@ public class SecretsManagerInstanceManagement extends BaseService {
    * Create admin token.
    *
    * Generate a Vault admin token for authenticating to your Vault Dedicated cluster. The token is valid for 1 hour and
-   * grants administrative privileges. Use only for initial setup and cluster management, then revoke immediately.
+   * grants administrative privileges. Use only for initial setup and cluster management, then delete immediately.
    * Optionally, set response_wrapping to true in the request body to receive a Vault response-wrapped token instead of
    * a plain admin token.
    *
@@ -147,8 +147,8 @@ public class SecretsManagerInstanceManagement extends BaseService {
     com.ibm.cloud.sdk.core.util.Validator.notNull(createVaultAdmintokenOptions,
       "createVaultAdmintokenOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
-    pathParamsMap.put("id", createVaultAdmintokenOptions.id());
-    RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/v2/instances/{id}/admintokens", pathParamsMap));
+    pathParamsMap.put("instance_id", createVaultAdmintokenOptions.instanceId());
+    RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/v2/instances/{instance_id}/admintokens", pathParamsMap));
     Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager_instance_management", "v2", "createVaultAdmintoken");
     for (Entry<String, String> header : sdkHeaders.entrySet()) {
       builder.header(header.getKey(), header.getValue());
@@ -167,18 +167,19 @@ public class SecretsManagerInstanceManagement extends BaseService {
   /**
    * Delete admin tokens.
    *
-   * Revoke all active Vault admin tokens. This immediately invalidates all existing admin tokens.
+   * Delete all active Vault admin tokens. This immediately invalidates all existing admin tokens including wrapped
+   * tokens.
    *
-   * @param deleteInstanceAdmintokensOptions the {@link DeleteInstanceAdmintokensOptions} containing the options for the call
+   * @param deleteVaultAdmintokensOptions the {@link DeleteVaultAdmintokensOptions} containing the options for the call
    * @return a {@link ServiceCall} with a void result
    */
-  public ServiceCall<Void> deleteInstanceAdmintokens(DeleteInstanceAdmintokensOptions deleteInstanceAdmintokensOptions) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(deleteInstanceAdmintokensOptions,
-      "deleteInstanceAdmintokensOptions cannot be null");
+  public ServiceCall<Void> deleteVaultAdmintokens(DeleteVaultAdmintokensOptions deleteVaultAdmintokensOptions) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(deleteVaultAdmintokensOptions,
+      "deleteVaultAdmintokensOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
-    pathParamsMap.put("id", deleteInstanceAdmintokensOptions.id());
-    RequestBuilder builder = RequestBuilder.delete(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/v2/instances/{id}/admintokens", pathParamsMap));
-    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager_instance_management", "v2", "deleteInstanceAdmintokens");
+    pathParamsMap.put("instance_id", deleteVaultAdmintokensOptions.instanceId());
+    RequestBuilder builder = RequestBuilder.delete(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/v2/instances/{instance_id}/admintokens", pathParamsMap));
+    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager_instance_management", "v2", "deleteVaultAdmintokens");
     for (Entry<String, String> header : sdkHeaders.entrySet()) {
       builder.header(header.getKey(), header.getValue());
     }
@@ -198,8 +199,8 @@ public class SecretsManagerInstanceManagement extends BaseService {
     com.ibm.cloud.sdk.core.util.Validator.notNull(getInstanceOptions,
       "getInstanceOptions cannot be null");
     Map<String, String> pathParamsMap = new HashMap<String, String>();
-    pathParamsMap.put("id", getInstanceOptions.id());
-    RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/v2/instances/{id}", pathParamsMap));
+    pathParamsMap.put("instance_id", getInstanceOptions.instanceId());
+    RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/v2/instances/{instance_id}", pathParamsMap));
     Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager_instance_management", "v2", "getInstance");
     for (Entry<String, String> header : sdkHeaders.entrySet()) {
       builder.header(header.getKey(), header.getValue());

@@ -32,9 +32,9 @@ public class GetInstanceOptionsTest {
   @Test
   public void testGetInstanceOptions() throws Throwable {
     GetInstanceOptions getInstanceOptionsModel = new GetInstanceOptions.Builder()
-      .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .build();
-    assertEquals(getInstanceOptionsModel.id(), "fe5c5c27-3e44-474a-9484-55892e12d6d1");
+    assertEquals(getInstanceOptionsModel.instanceId(), "fe5c5c27-3e44-474a-9484-55892e12d6d1");
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

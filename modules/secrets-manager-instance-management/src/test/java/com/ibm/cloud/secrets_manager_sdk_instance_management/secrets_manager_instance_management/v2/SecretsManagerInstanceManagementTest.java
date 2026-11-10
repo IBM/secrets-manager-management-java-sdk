@@ -23,8 +23,8 @@ import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_ins
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateDestinationRequestIbmCloudDatabaseDestinationPrototype;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateInstanceDestinationOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.CreateVaultAdmintokenOptions;
-import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteInstanceDestinationOptions;
+import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DeleteVaultAdmintokensOptions;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.Destination;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationCollection;
 import com.ibm.cloud.secrets_manager_sdk_instance_management.secrets_manager_instance_management.v2.model.DestinationPatch;
@@ -103,7 +103,7 @@ public class SecretsManagerInstanceManagementTest {
 
     // Construct an instance of the CreateVaultAdmintokenOptions model
     CreateVaultAdmintokenOptions createVaultAdmintokenOptionsModel = new CreateVaultAdmintokenOptions.Builder()
-      .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .responseWrapping(true)
       .build();
 
@@ -142,23 +142,23 @@ public class SecretsManagerInstanceManagementTest {
     secretsManagerInstanceManagementService.createVaultAdmintoken(null).execute();
   }
 
-  // Test the deleteInstanceAdmintokens operation with a valid options model parameter
+  // Test the deleteVaultAdmintokens operation with a valid options model parameter
   @Test
-  public void testDeleteInstanceAdmintokensWOptions() throws Throwable {
+  public void testDeleteVaultAdmintokensWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "";
-    String deleteInstanceAdmintokensPath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/admintokens";
+    String deleteVaultAdmintokensPath = "/v2/instances/fe5c5c27-3e44-474a-9484-55892e12d6d1/admintokens";
     server.enqueue(new MockResponse()
       .setResponseCode(204)
       .setBody(mockResponseBody));
 
-    // Construct an instance of the DeleteInstanceAdmintokensOptions model
-    DeleteInstanceAdmintokensOptions deleteInstanceAdmintokensOptionsModel = new DeleteInstanceAdmintokensOptions.Builder()
-      .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+    // Construct an instance of the DeleteVaultAdmintokensOptions model
+    DeleteVaultAdmintokensOptions deleteVaultAdmintokensOptionsModel = new DeleteVaultAdmintokensOptions.Builder()
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .build();
 
-    // Invoke deleteInstanceAdmintokens() with a valid options model and verify the result
-    Response<Void> response = secretsManagerInstanceManagementService.deleteInstanceAdmintokens(deleteInstanceAdmintokensOptionsModel).execute();
+    // Invoke deleteVaultAdmintokens() with a valid options model and verify the result
+    Response<Void> response = secretsManagerInstanceManagementService.deleteVaultAdmintokens(deleteVaultAdmintokensOptionsModel).execute();
     assertNotNull(response);
     Void responseObj = response.getResult();
     assertNull(responseObj);
@@ -169,27 +169,27 @@ public class SecretsManagerInstanceManagementTest {
     assertEquals(request.getMethod(), "DELETE");
     // Verify request path
     String parsedPath = TestUtilities.parseReqPath(request);
-    assertEquals(parsedPath, deleteInstanceAdmintokensPath);
+    assertEquals(parsedPath, deleteVaultAdmintokensPath);
     // Verify that there is no query string
     Map<String, String> query = TestUtilities.parseQueryString(request);
     assertNull(query);
   }
 
-  // Test the deleteInstanceAdmintokens operation with and without retries enabled
+  // Test the deleteVaultAdmintokens operation with and without retries enabled
   @Test
-  public void testDeleteInstanceAdmintokensWRetries() throws Throwable {
+  public void testDeleteVaultAdmintokensWRetries() throws Throwable {
     secretsManagerInstanceManagementService.enableRetries(4, 30);
-    testDeleteInstanceAdmintokensWOptions();
+    testDeleteVaultAdmintokensWOptions();
 
     secretsManagerInstanceManagementService.disableRetries();
-    testDeleteInstanceAdmintokensWOptions();
+    testDeleteVaultAdmintokensWOptions();
   }
 
-  // Test the deleteInstanceAdmintokens operation with a null options model (negative test)
+  // Test the deleteVaultAdmintokens operation with a null options model (negative test)
   @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testDeleteInstanceAdmintokensNoOptions() throws Throwable {
+  public void testDeleteVaultAdmintokensNoOptions() throws Throwable {
     server.enqueue(new MockResponse());
-    secretsManagerInstanceManagementService.deleteInstanceAdmintokens(null).execute();
+    secretsManagerInstanceManagementService.deleteVaultAdmintokens(null).execute();
   }
 
   // Test the getInstance operation with a valid options model parameter
@@ -205,7 +205,7 @@ public class SecretsManagerInstanceManagementTest {
 
     // Construct an instance of the GetInstanceOptions model
     GetInstanceOptions getInstanceOptionsModel = new GetInstanceOptions.Builder()
-      .id("fe5c5c27-3e44-474a-9484-55892e12d6d1")
+      .instanceId("fe5c5c27-3e44-474a-9484-55892e12d6d1")
       .build();
 
     // Invoke getInstance() with a valid options model and verify the result
