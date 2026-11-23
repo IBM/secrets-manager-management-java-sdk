@@ -74,7 +74,7 @@ public class IbmCloudDatabaseDestination extends GenericModel {
   /**
    * Gets the id.
    *
-   * Destination ID.
+   * A standard UUID string (RFC 4122).
    *
    * @return the id
    */
